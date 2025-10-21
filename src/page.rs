@@ -1,19 +1,22 @@
-use serde::Deserialize;
-
 use crate::{error::RestApiError, prelude::*};
+use serde::Deserialize;
+use serde_json::{Value, from_value};
 use std::collections::HashMap;
 
 #[derive(Clone, Debug, Deserialize)]
-pub struct PageWikitext {
+pub struct PageInfo {
     pub id: usize,
     pub key: String,
     pub title: String,
     pub latest: RevisionTimestamp,
     pub content_model: String,
     pub license: LicenseModel,
-    pub source: String,
 }
 
+#[derive(Clone, Debug, Deserialize)]
+pub struct MediaResult {
+    pub files: Vec<FileInfo>,
+}
 #[derive(Clone, Debug)]
 pub struct Page {
     title: String,
@@ -26,11 +29,12 @@ impl Page {
         }
     }
 
+    /// Retrieves basic page information and wikitext.
     pub async fn get(
         &self,
         api: &RestApi,
         follow_redirect: bool,
-    ) -> Result<PageWikitext, RestApiError> {
+    ) -> Result<(PageInfo, String), RestApiError> {
         let path = format!("/page/{}", self.title);
         let mut params = HashMap::new();
         params.insert("redirect".to_string(), follow_redirect.to_string());
@@ -39,25 +43,200 @@ impl Page {
             .await?
             .build()?;
         let response = api.execute(request).await?;
-        let ret: PageWikitext = response.json().await?;
+        let j: Value = response.json().await?;
+        let wikitext = j["source"]
+            .as_str()
+            .ok_or(RestApiError::MissingResults)?
+            .to_string();
+        let ret = from_value::<PageInfo>(j)?;
+        Ok((ret, wikitext))
+    }
+
+    /// Retrieves basic page information and the URL for HTML retrieval.
+    pub async fn get_bare(
+        &self,
+        api: &RestApi,
+        follow_redirect: bool,
+    ) -> Result<(PageInfo, String), RestApiError> {
+        let path = format!("/page/{}/bare", self.title);
+        let mut params = HashMap::new();
+        params.insert("redirect".to_string(), follow_redirect.to_string());
+        let request = api
+            .mediawiki_request_builder(path, params, reqwest::Method::GET)
+            .await?
+            .build()?;
+        let response = api.execute(request).await?;
+        let j: Value = response.json().await?;
+        let html_url = j["html_url"]
+            .as_str()
+            .ok_or(RestApiError::MissingResults)?
+            .to_string();
+        let ret = from_value::<PageInfo>(j)?;
+        Ok((ret, html_url))
+    }
+
+    /// Retrieves the HTML for the page.
+    pub async fn get_html(
+        &self,
+        api: &RestApi,
+        follow_redirect: bool,
+        stash: bool,
+        flavor: HtmlFlavor,
+    ) -> Result<String, RestApiError> {
+        let path = format!("/page/{}/html", self.title);
+        let mut params = HashMap::new();
+        params.insert("redirect".to_string(), follow_redirect.to_string());
+        params.insert("stash".to_string(), stash.to_string());
+        params.insert("flavor".to_string(), flavor.to_string());
+        let request = api
+            .mediawiki_request_builder(path, params, reqwest::Method::GET)
+            .await?
+            .build()?;
+        let response = api.execute(request).await?;
+        let ret = response.text().await?;
+        Ok(ret)
+    }
+
+    /// Retrieves basic page information and the HTML for the page.
+    pub async fn get_with_html(
+        &self,
+        api: &RestApi,
+        follow_redirect: bool,
+        stash: bool,
+        flavor: HtmlFlavor,
+    ) -> Result<(PageInfo, String), RestApiError> {
+        let path = format!("/page/{}/with_html", self.title);
+        let mut params = HashMap::new();
+        params.insert("redirect".to_string(), follow_redirect.to_string());
+        params.insert("stash".to_string(), stash.to_string());
+        params.insert("flavor".to_string(), flavor.to_string());
+        let request = api
+            .mediawiki_request_builder(path, params, reqwest::Method::GET)
+            .await?
+            .build()?;
+        let response = api.execute(request).await?;
+        let j: Value = response.json().await?;
+        let html = j["html"]
+            .as_str()
+            .ok_or(RestApiError::MissingResults)?
+            .to_string();
+        let ret = from_value::<PageInfo>(j)?;
+        Ok((ret, html))
+    }
+
+    /// Retrieves the language links.
+    pub async fn get_links_language(
+        &self,
+        api: &RestApi,
+    ) -> Result<Vec<LanguageLink>, RestApiError> {
+        let path = format!("/page/{}/links/language", self.title);
+        let params = HashMap::new();
+        let request = api
+            .mediawiki_request_builder(path, params, reqwest::Method::GET)
+            .await?
+            .build()?;
+        let response = api.execute(request).await?;
+        let ret: Vec<LanguageLink> = response.json().await?;
+        Ok(ret)
+    }
+
+    /// Retrieves the used media.
+    pub async fn get_links_media(&self, api: &RestApi) -> Result<MediaResult, RestApiError> {
+        let path = format!("/page/{}/links/media", self.title);
+        let params = HashMap::new();
+        let request = api
+            .mediawiki_request_builder(path, params, reqwest::Method::GET)
+            .await?
+            .build()?;
+        let response = api.execute(request).await?;
+        let ret: MediaResult = response.json().await?;
         Ok(ret)
     }
 }
 
 #[cfg(test)]
 mod tests {
+    use super::*;
     use crate::rest_api_builder::RestApiBuilder;
 
-    use super::*;
-
     #[tokio::test]
-    async fn test_get_page() {
+    async fn test_get() {
         let api = RestApiBuilder::wikipedia("en").build();
         let page = Page::new("Rust (programming language)");
-        let wikitext = page
+        let (page_info, wikitext) = page
             .get(&api, false)
             .await
             .expect("Failed to get page content");
-        assert!(wikitext.source.contains("Mozilla sponsorship"));
+        assert_eq!(page_info.id, 29414838);
+        assert!(wikitext.contains("Mozilla sponsorship"));
+    }
+
+    #[tokio::test]
+    async fn test_get_bare() {
+        let api = RestApiBuilder::wikipedia("en").build();
+        let page = Page::new("Rust (programming language)");
+        let (page_info, html_url) = page
+            .get_bare(&api, false)
+            .await
+            .expect("Failed to get page content");
+        assert_eq!(page_info.id, 29414838);
+        assert_eq!(
+            html_url,
+            "https://en.wikipedia.org/w/rest.php/v1/page/Rust%20%28programming%20language%29/html"
+        );
+    }
+
+    #[tokio::test]
+    async fn test_get_html() {
+        let api = RestApiBuilder::wikipedia("en").build();
+        let page = Page::new("Rust (programming language)");
+        let result = page
+            .get_html(&api, false, false, HtmlFlavor::View)
+            .await
+            .expect("Failed to get page content");
+        assert!(result.contains("<title>Rust (programming language)</title>"));
+    }
+
+    #[tokio::test]
+    async fn test_get_with_html() {
+        let api = RestApiBuilder::wikipedia("en").build();
+        let page = Page::new("Rust (programming language)");
+        let (page_info, html) = page
+            .get_with_html(&api, false, false, HtmlFlavor::View)
+            .await
+            .expect("Failed to get page content");
+        assert_eq!(page_info.id, 29414838);
+        assert!(html.contains("<title>Rust (programming language)</title>"));
+    }
+
+    #[tokio::test]
+    async fn test_get_links_language() {
+        let api = RestApiBuilder::wikipedia("en").build();
+        let page = Page::new("Rust (programming language)");
+        let language_links = page
+            .get_links_language(&api)
+            .await
+            .expect("Failed to get page content");
+        assert!(
+            language_links.iter().any(
+                |link| link.code == "it" && link.title == "Rust (linguaggio di programmazione)"
+            )
+        );
+    }
+
+    #[tokio::test]
+    async fn test_get_links_media() {
+        let api = RestApiBuilder::wikipedia("en").build();
+        let page = Page::new("Cambridge");
+        let media_links = page
+            .get_links_media(&api)
+            .await
+            .expect("Failed to get page content");
+        assert!(
+            media_links
+                .files
+                .iter()
+                .any(|file| file.title == "Flag of England.svg")
+        );
     }
 }
