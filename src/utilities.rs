@@ -70,4 +70,5 @@ pub struct FileInfo {
     pub latest: FileRevision,
     pub preferred: MediaType,
     pub original: MediaType,
+    pub thumbnail: Option<MediaType>,
 }

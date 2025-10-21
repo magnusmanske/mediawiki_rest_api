@@ -23,6 +23,7 @@ pub struct Page {
 }
 
 impl Page {
+    /// Creates a new page object with the given title.
     pub fn new<S: Into<String>>(title: S) -> Self {
         Self {
             title: title.into(),

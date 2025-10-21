@@ -39,6 +39,7 @@
 )]
 
 pub mod error;
+pub mod file;
 pub mod page;
 pub mod prelude;
 pub mod rest_api;
