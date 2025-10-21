@@ -44,4 +44,7 @@ pub mod page;
 pub mod prelude;
 pub mod rest_api;
 pub mod rest_api_builder;
+pub mod revision;
 pub mod utilities;
+
+// See https://en.wikipedia.org/wiki/Special:RestSandbox

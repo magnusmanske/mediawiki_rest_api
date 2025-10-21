@@ -88,3 +88,24 @@ pub struct Lint {
     pub template_info: TemplateInfo,
     pub params: Value,
 }
+
+#[derive(Clone, Debug, Deserialize)]
+pub struct PageInfo {
+    pub id: usize,
+    pub key: String,
+    pub title: String,
+}
+
+#[derive(Clone, Debug, Deserialize)]
+pub struct RevisionInfo {
+    pub id: usize,
+    pub size: usize,
+    pub delta: isize,
+    pub comment: String,
+    pub minor: bool,
+    pub timestamp: String,
+    pub content_model: String,
+    pub page: PageInfo,
+    pub license: LicenseModel,
+    pub user: UserInfo,
+}

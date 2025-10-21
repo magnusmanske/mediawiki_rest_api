@@ -17,6 +17,7 @@ pub struct PageInfo {
 pub struct MediaResult {
     pub files: Vec<FileInfo>,
 }
+
 #[derive(Clone, Debug)]
 pub struct Page {
     title: String,
@@ -283,6 +284,8 @@ mod tests {
             .get_lint(&api, false)
             .await
             .expect("Failed to get page content");
-        assert!(lints.iter().any(|lint| lint.type_name == "duplicate-ids"));
+        assert_eq!(lints.len(), 9);
+        assert!(lints.iter().any(|lint| lint.type_name == "duplicate-ids"
+            && lint.template_info.name == "Template:Cite_book"));
     }
 }
