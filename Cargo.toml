@@ -33,5 +33,5 @@ thiserror = "2"
 #nutype = { version = "0.6", features = ["regex"] }
 
 [dev-dependencies]
-#wiremock = "0.6"
+wiremock = "0.6"
 http = "1"

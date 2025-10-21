@@ -153,12 +153,32 @@ impl Page {
         let ret: MediaResult = response.json().await?;
         Ok(ret)
     }
+
+    /// Retrieves basic page information and the URL for HTML retrieval.
+    pub async fn get_lint(
+        &self,
+        api: &RestApi,
+        follow_redirect: bool,
+    ) -> Result<Vec<Lint>, RestApiError> {
+        let path = format!("/page/{}/lint", self.title);
+        let mut params = HashMap::new();
+        params.insert("redirect".to_string(), follow_redirect.to_string());
+        let request = api
+            .mediawiki_request_builder(path, params, reqwest::Method::GET)
+            .await?
+            .build()?;
+        let response = api.execute(request).await?;
+        let ret: Vec<Lint> = response.json().await?;
+        Ok(ret)
+    }
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
     use crate::rest_api_builder::RestApiBuilder;
+    use wiremock::matchers::{method, path};
+    use wiremock::{Mock, MockServer, ResponseTemplate};
 
     #[tokio::test]
     async fn test_get() {
@@ -239,5 +259,30 @@ mod tests {
                 .iter()
                 .any(|file| file.title == "Flag of England.svg")
         );
+    }
+
+    #[tokio::test]
+    async fn test_get_lint() {
+        let v: String =
+            std::fs::read_to_string("test_data/page_lint.json").expect("Test file missing");
+        let v: Value = serde_json::from_str(&v).expect("Failed to parse JSON");
+
+        let mock_path = "w/rest.php/v1/page/Cambridge/lint";
+        let mock_server = MockServer::start().await;
+        Mock::given(method("GET"))
+            .and(path(mock_path))
+            .respond_with(ResponseTemplate::new(200).set_body_json(&v))
+            .mount(&mock_server)
+            .await;
+        let api = RestApi::builder(&(mock_server.uri() + "/w/rest.php"))
+            .expect("Failed to create RestApi")
+            .build();
+
+        let page = Page::new("Cambridge");
+        let lints = page
+            .get_lint(&api, false)
+            .await
+            .expect("Failed to get page content");
+        assert!(lints.iter().any(|lint| lint.type_name == "duplicate-ids"));
     }
 }

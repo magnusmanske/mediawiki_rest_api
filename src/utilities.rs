@@ -1,6 +1,7 @@
 use core::fmt;
 
 use serde::Deserialize;
+use serde_json::Value;
 
 #[derive(Clone, Debug, Deserialize)]
 pub struct LicenseModel {
@@ -71,4 +72,19 @@ pub struct FileInfo {
     pub preferred: MediaType,
     pub original: MediaType,
     pub thumbnail: Option<MediaType>,
+}
+
+#[derive(Clone, Debug, Deserialize)]
+pub struct TemplateInfo {
+    pub name: String,
+}
+
+#[derive(Clone, Debug, Deserialize)]
+pub struct Lint {
+    #[serde(alias = "type")]
+    pub type_name: String,
+    pub dsr: Vec<Option<usize>>,
+    #[serde(alias = "templateInfo")]
+    pub template_info: TemplateInfo,
+    pub params: Value,
 }

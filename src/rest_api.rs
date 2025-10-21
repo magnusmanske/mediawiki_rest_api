@@ -1,4 +1,4 @@
-use crate::error::RestApiError;
+use crate::{error::RestApiError, rest_api_builder::RestApiBuilder};
 use reqwest::header::HeaderMap;
 use std::collections::HashMap;
 
@@ -13,6 +13,11 @@ pub struct RestApi {
 
 // Public functions
 impl RestApi {
+    /// Returns a `RestApiBuilder`. Wrapper around `RestApiBuilder::new()`.
+    pub fn builder<S: Into<String>>(api_url: S) -> Result<RestApiBuilder, RestApiError> {
+        RestApiBuilder::new(api_url)
+    }
+
     /// Returns the user agent
     pub fn user_agent(&self) -> &str {
         &self.user_agent
