@@ -3,7 +3,7 @@
 [![License](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](LICENSE-MIT)
 [![License](https://img.shields.io/badge/license-APACHE2-blue?style=flat-square)](LICENSE-APACHE2)
 
-This Rust crate provides a client for the MediaWiki REST API.
+This Rust crate provides a client for the [MediaWiki REST API](https://www.mediawiki.org/wiki/API:REST_API).
 
 # Usage
 ```rust
