@@ -20,4 +20,5 @@ let (page_info,wikitext) = page.get(&api, false).await.unwrap();
 ```
 
 # Status
-So far, most of the `GET` methods for `Page` are implemented. More to come.
+* `File`: implemented
+* `Page`: most `GET` methods implemented

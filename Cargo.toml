@@ -1,6 +1,6 @@
 [package]
 name = "mediawiki_rest_api"
-version = "0.0.1"
+version = "0.0.2"
 edition = "2024"
 authors = ["Magnus Manske <magnusmanske@googlemail.com>"]
 readme = "README.md"
