@@ -1,3 +1,5 @@
+[![Crates.io](https://img.shields.io/crates/v/mediawiki_rest_api?style=flat-square)](https://crates.io/crates/mediawiki_rest_api)
+[![Crates.io](https://img.shields.io/crates/d/mediawiki_rest_api?style=flat-square)](https://crates.io/crates/mediawiki_rest_api)
 [![License](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](LICENSE-MIT)
 [![License](https://img.shields.io/badge/license-APACHE2-blue?style=flat-square)](LICENSE-APACHE2)
 
