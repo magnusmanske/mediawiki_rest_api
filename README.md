@@ -18,3 +18,6 @@ let page = Page::new("Rust (programming language)");
 // ...retrieve basic information and wikitext
 let (page_info,wikitext) = page.get(&api, false).await.unwrap();
 ```
+
+# Status
+So far, most of the `GET` methods for `Page` are implemented. More to come.
