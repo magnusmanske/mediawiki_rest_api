@@ -23,74 +23,67 @@ impl RestApiBuilder {
     /// Returns an error if REST API URL is invalid.
     pub fn new<S: Into<String>>(api_url: S) -> Result<Self, RestApiError> {
         let api_url = Self::validate_api_url(&api_url.into())?;
-        Ok(Self {
-            client: None,
-            // token: BearerToken::default(),
-            user_agent: None,
-            api_url,
-            api_version: None,
-            // renewal_interval: None,
-        })
+        Ok(Self::new_from_validated(api_url))
     }
 
     /// Convenience function for a specific Wikimedia wiki group
-    pub fn wikipedia(language: &str) -> Result<Self, RestApiError> {
-        Self::new(format!("https://{language}.wikipedia.org/w/rest.php"))
+    pub fn wikipedia(language: &str) -> Self {
+        Self::new_from_validated(format!("https://{language}.wikipedia.org/w/rest.php"))
     }
 
     /// Convenience function for a specific Wikimedia wiki group
-    pub fn wikitionary(language: &str) -> Result<Self, RestApiError> {
-        Self::new(format!("https://{language}.wikitionary.org/w/rest.php"))
+    pub fn wikitionary(language: &str) -> Self {
+        Self::new_from_validated(format!("https://{language}.wikitionary.org/w/rest.php"))
     }
 
     /// Convenience function for a specific Wikimedia wiki group
-    pub fn wikivoyage(language: &str) -> Result<Self, RestApiError> {
-        Self::new(format!("https://{language}.wikivoyage.org/w/rest.php"))
+    pub fn wikivoyage(language: &str) -> Self {
+        Self::new_from_validated(format!("https://{language}.wikivoyage.org/w/rest.php"))
     }
 
     /// Convenience function for a specific Wikimedia wiki group
-    pub fn wikibooks(language: &str) -> Result<Self, RestApiError> {
-        Self::new(format!("https://{language}.wikibooks.org/w/rest.php"))
+    pub fn wikibooks(language: &str) -> Self {
+        Self::new_from_validated(format!("https://{language}.wikibooks.org/w/rest.php"))
     }
 
     /// Convenience function for a specific Wikimedia wiki group
-    pub fn wikinews(language: &str) -> Result<Self, RestApiError> {
-        Self::new(format!("https://{language}.wikinews.org/w/rest.php"))
+    pub fn wikinews(language: &str) -> Self {
+        Self::new_from_validated(format!("https://{language}.wikinews.org/w/rest.php"))
     }
 
     /// Convenience function for a specific Wikimedia wiki group
-    pub fn wikisource(language: &str) -> Result<Self, RestApiError> {
-        Self::new(format!("https://{language}.wikisource.org/w/rest.php"))
+    pub fn wikisource(language: &str) -> Self {
+        Self::new_from_validated(format!("https://{language}.wikisource.org/w/rest.php"))
     }
 
     /// Convenience function for a specific Wikimedia wiki group
-    pub fn wikiversity(language: &str) -> Result<Self, RestApiError> {
-        Self::new(format!("https://{language}.wikiversity.org/w/rest.php"))
+    pub fn wikiversity(language: &str) -> Self {
+        Self::new_from_validated(format!("https://{language}.wikiversity.org/w/rest.php"))
     }
 
     /// Convenience function for a specific Wikimedia wiki group
-    pub fn wikiquote(language: &str) -> Result<Self, RestApiError> {
-        Self::new(format!("https://{language}.wikiquote.org/w/rest.php"))
+    pub fn wikiquote(language: &str) -> Self {
+        Self::new_from_validated(format!("https://{language}.wikiquote.org/w/rest.php"))
     }
 
     /// Convenience function for a specific Wikimedia wiki
-    pub fn commons() -> Result<Self, RestApiError> {
-        Self::new("https://commons.wikimedia.org/w/rest.php")
+    pub fn commons() -> Self {
+        Self::new_from_validated("https://commons.wikimedia.org/w/rest.php")
     }
 
     /// Convenience function for a specific Wikimedia wiki
-    pub fn wikidata() -> Result<Self, RestApiError> {
-        Self::new("https://www.wikidata.org/w/rest.php")
+    pub fn wikidata() -> Self {
+        Self::new_from_validated("https://www.wikidata.org/w/rest.php")
     }
 
     /// Convenience function for a specific Wikimedia wiki
-    pub fn wikispecies() -> Result<Self, RestApiError> {
-        Self::new("https://species.wikimedia.org/w/rest.php")
+    pub fn wikispecies() -> Self {
+        Self::new_from_validated("https://species.wikimedia.org/w/rest.php")
     }
 
     /// Convenience function for a specific Wikimedia wiki
-    pub fn meta() -> Result<Self, RestApiError> {
-        Self::new("https://meta.wikimedia.org/w/rest.php")
+    pub fn meta() -> Self {
+        Self::new_from_validated("https://meta.wikimedia.org/w/rest.php")
     }
 
     /// Builds the `RestApi`. Returns an error if no REST API URL is set.
@@ -148,5 +141,16 @@ impl RestApiBuilder {
             env!("CARGO_PKG_NAME"),
             env!("CARGO_PKG_VERSION")
         )
+    }
+
+    fn new_from_validated<S: Into<String>>(api_url: S) -> Self {
+        Self {
+            client: None,
+            // token: BearerToken::default(),
+            user_agent: None,
+            api_url: api_url.into(),
+            api_version: None,
+            // renewal_interval: None,
+        }
     }
 }

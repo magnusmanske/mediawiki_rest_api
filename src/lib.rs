@@ -43,3 +43,4 @@ pub mod page;
 pub mod prelude;
 pub mod rest_api;
 pub mod rest_api_builder;
+pub mod utilities;
