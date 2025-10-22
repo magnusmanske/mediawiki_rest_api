@@ -177,9 +177,9 @@ impl Page {
     pub async fn get_history(
         &self,
         api: &RestApi,
+        filter: Option<Filter>,
         older_than: Option<usize>,
         newer_than: Option<usize>,
-        filter: Option<Filter>,
     ) -> Result<History, RestApiError> {
         let path = format!("/page/{}/history", self.title);
         let mut params = HashMap::new();
@@ -198,6 +198,31 @@ impl Page {
             .build()?;
         let response = api.execute(request).await?;
         let ret: History = response.json().await?;
+        Ok(ret)
+    }
+
+    /// Retrieves history counts for the page.
+    pub async fn get_history_counts(
+        &self,
+        api: &RestApi,
+        filter: HistoryFilterExtended,
+        from: Option<usize>,
+        to: Option<usize>,
+    ) -> Result<HistoryCounts, RestApiError> {
+        let path = format!("/page/{}/history/counts/{filter}", self.title);
+        let mut params = HashMap::new();
+        if let Some(from) = from {
+            params.insert("from".to_string(), from.to_string());
+        }
+        if let Some(to) = to {
+            params.insert("to".to_string(), to.to_string());
+        }
+        let request = api
+            .mediawiki_request_builder(path, params, reqwest::Method::GET)
+            .await?
+            .build()?;
+        let response = api.execute(request).await?;
+        let ret: HistoryCounts = response.json().await?;
         Ok(ret)
     }
 }
@@ -339,5 +364,30 @@ mod tests {
             .await
             .expect("Failed to get page content");
         assert_eq!(history.revisions.len(), 20);
+    }
+
+    #[tokio::test]
+    async fn test_get_history_counts() {
+        let v: String = std::fs::read_to_string("test_data/page_history_counts.json")
+            .expect("Test file missing");
+        let v: Value = serde_json::from_str(&v).expect("Failed to parse JSON");
+
+        let mock_path = "w/rest.php/v1/page/Cambridge/history/counts/anonymous";
+        let mock_server = MockServer::start().await;
+        Mock::given(method("GET"))
+            .and(path(mock_path))
+            .respond_with(ResponseTemplate::new(200).set_body_json(&v))
+            .mount(&mock_server)
+            .await;
+        let api = RestApi::builder(&(mock_server.uri() + "/w/rest.php"))
+            .expect("Failed to create RestApi")
+            .build();
+
+        let page = Page::new("Cambridge");
+        let hc = page
+            .get_history_counts(&api, HistoryFilterExtended::Anonymous, None, None)
+            .await
+            .expect("Failed to get page content");
+        assert_eq!(hc.count, 1289);
     }
 }

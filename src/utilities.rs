@@ -166,6 +166,37 @@ impl fmt::Display for Filter {
     }
 }
 
+#[derive(Clone, Copy, Debug, Deserialize)]
+pub enum HistoryFilterExtended {
+    Anonymous,
+    Temporary,
+    Bot,
+    Editors,
+    Edits,
+    Minor,
+    Reverted,
+    AnonEdits,
+    BotEdits,
+    RevertedEdits,
+}
+
+impl fmt::Display for HistoryFilterExtended {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        match self {
+            Self::Anonymous => write!(f, "anonymous"),
+            Self::Temporary => write!(f, "temporary"),
+            Self::Bot => write!(f, "bot"),
+            Self::Editors => write!(f, "editors"),
+            Self::Edits => write!(f, "edits"),
+            Self::Minor => write!(f, "minor"),
+            Self::Reverted => write!(f, "reverted"),
+            Self::AnonEdits => write!(f, "anonedits"),
+            Self::BotEdits => write!(f, "botedits"),
+            Self::RevertedEdits => write!(f, "revertededits"),
+        }
+    }
+}
+
 #[derive(Clone, Debug, Deserialize)]
 pub struct HistoryRevisionInfo {
     pub id: usize,
@@ -182,4 +213,10 @@ pub struct History {
     pub revisions: Vec<HistoryRevisionInfo>,
     pub latest: Option<String>,
     pub older: Option<String>,
+}
+
+#[derive(Clone, Copy, Debug, Deserialize)]
+pub struct HistoryCounts {
+    pub count: usize,
+    pub limit: bool,
 }
