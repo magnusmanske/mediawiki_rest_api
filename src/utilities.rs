@@ -44,7 +44,7 @@ pub struct LanguageLink {
 
 #[derive(Clone, Debug, Deserialize)]
 pub struct UserInfo {
-    pub id: usize,
+    pub id: Option<usize>,
     pub name: String,
 }
 
@@ -145,4 +145,41 @@ pub struct Diff {
     pub diff: Vec<DiffInfo>,
     pub from: DiffSections,
     pub to: DiffSections,
+}
+
+#[derive(Clone, Copy, Debug, Deserialize)]
+pub enum Filter {
+    Anonymous,
+    Bot,
+    Reverted,
+    Minor,
+}
+
+impl fmt::Display for Filter {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        match self {
+            Filter::Anonymous => write!(f, "anonymous"),
+            Filter::Bot => write!(f, "bot"),
+            Filter::Reverted => write!(f, "reverted"),
+            Filter::Minor => write!(f, "minor"),
+        }
+    }
+}
+
+#[derive(Clone, Debug, Deserialize)]
+pub struct HistoryRevisionInfo {
+    pub id: usize,
+    pub size: usize,
+    pub delta: isize,
+    pub comment: String,
+    pub minor: bool,
+    pub timestamp: String,
+    pub user: UserInfo,
+}
+
+#[derive(Clone, Debug, Deserialize)]
+pub struct History {
+    pub revisions: Vec<HistoryRevisionInfo>,
+    pub latest: Option<String>,
+    pub older: Option<String>,
 }

@@ -172,6 +172,34 @@ impl Page {
         let ret: Vec<Lint> = response.json().await?;
         Ok(ret)
     }
+
+    /// Retrieves history data for the page.
+    pub async fn get_history(
+        &self,
+        api: &RestApi,
+        older_than: Option<usize>,
+        newer_than: Option<usize>,
+        filter: Option<Filter>,
+    ) -> Result<History, RestApiError> {
+        let path = format!("/page/{}/history", self.title);
+        let mut params = HashMap::new();
+        if let Some(older_than) = older_than {
+            params.insert("older_than".to_string(), older_than.to_string());
+        }
+        if let Some(newer_than) = newer_than {
+            params.insert("newer_than".to_string(), newer_than.to_string());
+        }
+        if let Some(filter) = filter {
+            params.insert("filter".to_string(), filter.to_string());
+        }
+        let request = api
+            .mediawiki_request_builder(path, params, reqwest::Method::GET)
+            .await?
+            .build()?;
+        let response = api.execute(request).await?;
+        let ret: History = response.json().await?;
+        Ok(ret)
+    }
 }
 
 #[cfg(test)]
@@ -287,5 +315,29 @@ mod tests {
         assert_eq!(lints.len(), 9);
         assert!(lints.iter().any(|lint| lint.type_name == "duplicate-ids"
             && lint.template_info.name == "Template:Cite_book"));
+    }
+
+    #[tokio::test]
+    async fn test_get_history() {
+        let v: String =
+            std::fs::read_to_string("test_data/page_history.json").expect("Test file missing");
+        let v: Value = serde_json::from_str(&v).expect("Failed to parse JSON");
+
+        let mock_path = "w/rest.php/v1/page/Rust%20(programming%20language)/history";
+        let mock_server = MockServer::start().await;
+        Mock::given(method("GET"))
+            .and(path(mock_path))
+            .respond_with(ResponseTemplate::new(200).set_body_json(&v))
+            .mount(&mock_server)
+            .await;
+        let api = RestApi::builder(&(mock_server.uri() + "/w/rest.php"))
+            .expect("Failed to create RestApi")
+            .build();
+        let page = Page::new("Rust (programming language)");
+        let history = page
+            .get_history(&api, None, None, None)
+            .await
+            .expect("Failed to get page content");
+        assert_eq!(history.revisions.len(), 20);
     }
 }
