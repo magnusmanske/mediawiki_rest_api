@@ -4,7 +4,7 @@ use serde_json::{Value, from_value};
 
 use crate::{
     error::RestApiError,
-    prelude::{HtmlFlavor, RestApi, RevisionInfo},
+    prelude::{HtmlFlavor, Lint, RestApi, RevisionInfo},
 };
 
 #[derive(Clone, Copy, Debug)]
@@ -37,6 +37,24 @@ impl Revision {
             .to_string();
         let ret = from_value::<RevisionInfo>(j)?;
         Ok((ret, wikitext))
+    }
+
+    /// Retrieves basic revision information and the link to the HTML.
+    pub async fn get_bare(&self, api: &RestApi) -> Result<(RevisionInfo, String), RestApiError> {
+        let path = format!("/revision/{}/bare", self.id);
+        let params = HashMap::new();
+        let request = api
+            .mediawiki_request_builder(path, params, reqwest::Method::GET)
+            .await?
+            .build()?;
+        let response = api.execute(request).await?;
+        let j: Value = response.json().await?;
+        let html_url = j["html_url"]
+            .as_str()
+            .ok_or(RestApiError::MissingResults)?
+            .to_string();
+        let ret = from_value::<RevisionInfo>(j)?;
+        Ok((ret, html_url))
     }
 
     /// Retrieves the HTML for the revision.
@@ -83,22 +101,35 @@ impl Revision {
         let ret = from_value::<RevisionInfo>(j)?;
         Ok((ret, html))
     }
+
+    /// Retrieves lint data for the revision.
+    pub async fn get_lint(&self, api: &RestApi) -> Result<Vec<Lint>, RestApiError> {
+        let path = format!("/revision/{}/lint", self.id);
+        let params = HashMap::new();
+        let request = api
+            .mediawiki_request_builder(path, params, reqwest::Method::GET)
+            .await?
+            .build()?;
+        let response = api.execute(request).await?;
+        let ret: Vec<Lint> = response.json().await?;
+        Ok(ret)
+    }
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
     use crate::rest_api_builder::RestApiBuilder;
-    // use wiremock::matchers::{method, path};
-    // use wiremock::{Mock, MockServer, ResponseTemplate};
-    //
-    // test revision id 1316925953
-    // test revision old_id 1316608902
+    use wiremock::matchers::{method, path};
+    use wiremock::{Mock, MockServer, ResponseTemplate};
+
+    const TEST_REVISION_ID: usize = 1316925953;
+    // const TEST_REVISION_OLD_ID: usize = 1316608902;
 
     #[tokio::test]
     async fn test_get() {
         let api = RestApiBuilder::wikipedia("en").build();
-        let revision = Revision::new(1316925953);
+        let revision = Revision::new(TEST_REVISION_ID);
         let (revision_info, wikitext) = revision
             .get(&api)
             .await
@@ -110,7 +141,7 @@ mod tests {
     #[tokio::test]
     async fn test_get_html() {
         let api = RestApiBuilder::wikipedia("en").build();
-        let revision = Revision::new(1316925953);
+        let revision = Revision::new(TEST_REVISION_ID);
         let html = revision
             .get_html(&api, false, HtmlFlavor::View)
             .await
@@ -119,14 +150,56 @@ mod tests {
     }
 
     #[tokio::test]
-    async fn test_get_with_html_rev() {
+    async fn test_get_with_html() {
         let api = RestApiBuilder::wikipedia("en").build();
-        let revision = Revision::new(1316925953);
+        let revision = Revision::new(TEST_REVISION_ID);
         let (revision_info, html) = revision
             .get_with_html(&api, false, HtmlFlavor::View)
             .await
             .expect("Failed to get page content");
         assert_eq!(revision_info.size, 114334);
         assert!(html.contains("<title>Rust (programming language)</title>"));
+    }
+
+    #[tokio::test]
+    async fn test_get_bare() {
+        let api = RestApiBuilder::wikipedia("en").build();
+        let revision = Revision::new(TEST_REVISION_ID);
+        let (revision_info, html_url) = revision
+            .get_bare(&api)
+            .await
+            .expect("Failed to get page content");
+        assert_eq!(revision_info.size, 114334);
+        assert_eq!(
+            html_url,
+            "https://en.wikipedia.org/w/rest.php/v1/revision/1316925953/html"
+        );
+    }
+
+    #[tokio::test]
+    async fn test_get_lint_rev() {
+        let v: String =
+            std::fs::read_to_string("test_data/revision_lint.json").expect("Test file missing");
+        let v: Value = serde_json::from_str(&v).expect("Failed to parse JSON");
+
+        let mock_path = format!("w/rest.php/v1/revision/{TEST_REVISION_ID}/lint");
+        let mock_server = MockServer::start().await;
+        Mock::given(method("GET"))
+            .and(path(mock_path))
+            .respond_with(ResponseTemplate::new(200).set_body_json(&v))
+            .mount(&mock_server)
+            .await;
+        let api = RestApi::builder(&(mock_server.uri() + "/w/rest.php"))
+            .expect("Failed to create RestApi")
+            .build();
+
+        let page = Revision::new(TEST_REVISION_ID);
+        let lints = page
+            .get_lint(&api)
+            .await
+            .expect("Failed to get page content");
+        assert_eq!(lints.len(), 14);
+        assert!(lints.iter().any(|lint| lint.type_name == "duplicate-ids"
+            && lint.template_info.name == "Template:Cite_web"));
     }
 }

@@ -155,7 +155,7 @@ impl Page {
         Ok(ret)
     }
 
-    /// Retrieves basic page information and the URL for HTML retrieval.
+    /// Retrieves lint data for the page.
     pub async fn get_lint(
         &self,
         api: &RestApi,

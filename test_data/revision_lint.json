@@ -1,0 +1,212 @@
+[
+	{
+		"type": "duplicate-ids",
+		"dsr": [
+			78051,
+			78440,
+			null,
+			null
+		],
+		"templateInfo": {
+			"name": "Template:Cite_web"
+		},
+		"params": {
+			"id": "CITEREFAnderson2021"
+		}
+	},
+	{
+		"type": "duplicate-ids",
+		"dsr": [
+			84283,
+			84514,
+			null,
+			null
+		],
+		"templateInfo": {
+			"name": "Template:Cite_web"
+		},
+		"params": {
+			"id": "CITEREFClaburn2023"
+		}
+	},
+	{
+		"type": "duplicate-ids",
+		"dsr": [
+			87418,
+			87973,
+			null,
+			null
+		],
+		"templateInfo": {
+			"name": "Template:Cite_web"
+		},
+		"params": {
+			"id": "CITEREFTung2020"
+		}
+	},
+	{
+		"type": "duplicate-ids",
+		"dsr": [
+			88496,
+			88884,
+			null,
+			null
+		],
+		"templateInfo": {
+			"name": "Template:Cite_web"
+		},
+		"params": {
+			"id": "CITEREFSimone2019"
+		}
+	},
+	{
+		"type": "duplicate-ids",
+		"dsr": [
+			91248,
+			91419,
+			null,
+			null
+		],
+		"templateInfo": {
+			"name": "Template:Cite_web"
+		},
+		"params": {
+			"id": "CITEREFCorbet2022"
+		}
+	},
+	{
+		"type": "duplicate-ids",
+		"dsr": [
+			91991,
+			92460,
+			null,
+			null
+		],
+		"templateInfo": {
+			"name": "Template:Cite_web"
+		},
+		"params": {
+			"id": "CITEREFAmadeo2021"
+		}
+	},
+	{
+		"type": "duplicate-ids",
+		"dsr": [
+			92998,
+			93410,
+			null,
+			null
+		],
+		"templateInfo": {
+			"name": "Template:Cite_web"
+		},
+		"params": {
+			"id": "CITEREFClaburn2023"
+		}
+	},
+	{
+		"type": "duplicate-ids",
+		"dsr": [
+			93923,
+			94421,
+			null,
+			null
+		],
+		"templateInfo": {
+			"name": "Template:Cite_news"
+		},
+		"params": {
+			"id": "CITEREFYegulalp2016"
+		}
+	},
+	{
+		"type": "duplicate-ids",
+		"dsr": [
+			94505,
+			94930,
+			null,
+			null
+		],
+		"templateInfo": {
+			"name": "Template:Cite_web"
+		},
+		"params": {
+			"id": "CITEREFAnderson2021"
+		}
+	},
+	{
+		"type": "duplicate-ids",
+		"dsr": [
+			96838,
+			97276,
+			null,
+			null
+		],
+		"templateInfo": {
+			"name": "Template:Cite_web"
+		},
+		"params": {
+			"id": "CITEREFProven2023"
+		}
+	},
+	{
+		"type": "duplicate-ids",
+		"dsr": [
+			100071,
+			100503,
+			null,
+			null
+		],
+		"templateInfo": {
+			"name": "Template:Cite_web"
+		},
+		"params": {
+			"id": "CITEREFClaburn2022"
+		}
+	},
+	{
+		"type": "duplicate-ids",
+		"dsr": [
+			101930,
+			102351,
+			null,
+			null
+		],
+		"templateInfo": {
+			"name": "Template:Cite_journal"
+		},
+		"params": {
+			"id": "CITEREFPopescuXuApostolakisAugust2021"
+		}
+	},
+	{
+		"type": "duplicate-ids",
+		"dsr": [
+			107651,
+			108114,
+			null,
+			null
+		],
+		"templateInfo": {
+			"name": "Template:Cite_news"
+		},
+		"params": {
+			"id": "CITEREFVaughan-Nichols2021"
+		}
+	},
+	{
+		"type": "duplicate-ids",
+		"dsr": [
+			108215,
+			108694,
+			null,
+			null
+		],
+		"templateInfo": {
+			"name": "Template:Cite_news"
+		},
+		"params": {
+			"id": "CITEREFVaughan-Nichols2021"
+		}
+	}
+]
