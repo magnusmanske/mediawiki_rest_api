@@ -4,7 +4,7 @@ use serde_json::{Value, from_value};
 
 use crate::{
     error::RestApiError,
-    prelude::{HtmlFlavor, Lint, RestApi, RevisionInfo},
+    prelude::{Diff, HtmlFlavor, Lint, RestApi, RevisionInfo},
 };
 
 #[derive(Clone, Copy, Debug)]
@@ -114,6 +114,18 @@ impl Revision {
         let ret: Vec<Lint> = response.json().await?;
         Ok(ret)
     }
+
+    pub async fn get_compare(&self, api: &RestApi, to: usize) -> Result<Diff, RestApiError> {
+        let path = format!("/revision/{}/compare/{to}", self.id);
+        let params = HashMap::new();
+        let request = api
+            .mediawiki_request_builder(path, params, reqwest::Method::GET)
+            .await?
+            .build()?;
+        let response = api.execute(request).await?;
+        let ret: Diff = response.json().await?;
+        Ok(ret)
+    }
 }
 
 #[cfg(test)]
@@ -124,7 +136,7 @@ mod tests {
     use wiremock::{Mock, MockServer, ResponseTemplate};
 
     const TEST_REVISION_ID: usize = 1316925953;
-    // const TEST_REVISION_OLD_ID: usize = 1316608902;
+    const TEST_REVISION_OLD_ID: usize = 1316608902;
 
     #[tokio::test]
     async fn test_get() {
@@ -177,7 +189,34 @@ mod tests {
     }
 
     #[tokio::test]
-    async fn test_get_lint_rev() {
+    async fn test_get_compare() {
+        let v: String =
+            std::fs::read_to_string("test_data/revision_compare.json").expect("Test file missing");
+        let v: Value = serde_json::from_str(&v).expect("Failed to parse JSON");
+
+        let mock_path =
+            format!("w/rest.php/v1/revision/{TEST_REVISION_ID}/compare/{TEST_REVISION_OLD_ID}");
+        let mock_server = MockServer::start().await;
+        Mock::given(method("GET"))
+            .and(path(mock_path))
+            .respond_with(ResponseTemplate::new(200).set_body_json(&v))
+            .mount(&mock_server)
+            .await;
+        let api = RestApi::builder(&(mock_server.uri() + "/w/rest.php"))
+            .expect("Failed to create RestApi")
+            .build();
+        let revision = Revision::new(TEST_REVISION_ID);
+        let result = revision
+            .get_compare(&api, TEST_REVISION_OLD_ID)
+            .await
+            .expect("Failed to get page content");
+        assert_eq!(result.diff.len(), 6);
+        assert_eq!(result.from.sections.len(), 52);
+        assert_eq!(result.to.sections.len(), 52);
+    }
+
+    #[tokio::test]
+    async fn test_get_lint() {
         let v: String =
             std::fs::read_to_string("test_data/revision_lint.json").expect("Test file missing");
         let v: Value = serde_json::from_str(&v).expect("Failed to parse JSON");

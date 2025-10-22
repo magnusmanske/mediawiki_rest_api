@@ -1,0 +1,589 @@
+{
+	"diff": [
+		{
+			"lineNumber": 528,
+			"offset": {
+				"from": 56998,
+				"to": 56998
+			},
+			"text": "",
+			"type": 0
+		},
+		{
+			"lineNumber": 529,
+			"offset": {
+				"from": 56999,
+				"to": 56999
+			},
+			"text": "==== Trait objects ====",
+			"type": 0
+		},
+		{
+			"lineNumber": 530,
+			"offset": {
+				"from": null,
+				"to": 57023
+			},
+			"text": "Generic functions use [[static dispatch]], meaning that the type of all parameters that end up being used for the function must be known at compile time. Generic functions generate separate copies of the code for each combination of generic parameters used in a process called [[monomorphization]].{{sfn|Klabnik|Nichols|2023|pp=191-192}} Because monomorphization duplicates the code for each type used, it is as performant as writing functions using concrete types,{{sfn|Klabnik|Nichols|2023|pp=191-192}} but compile time and size of the output binary could be increased.{{sfn|Gjengset|2021|p=25}}",
+			"type": 1
+		},
+		{
+			"offset": {
+				"from": 57023,
+				"to": null
+			},
+			"text": "Rust supports two ways to call trait methods. With generics and trait bounds, calls use [[static dispatch]]: the compiler [[Monomorphization|monomorphizes]] the function for each concrete type, yielding performance comparable to hand-written, type-specific code, at the cost of longer compile times and potentially larger binaries.{{sfn|Klabnik|Nichols|2023|pp=191-192}} When the exact type is not known at compile time, or when heterogeneous collections are needed, Rust provides [[Dynamic dispatch|trait objects]] (e.g., <code>&dyn Trait</code>, <code>Box<dyn Trait></code>). Trait-object calls use [[dynamic dispatch]] via a vtable; a trait object is a \"fat pointer\" carrying both a data pointer and a method table pointer.{{sfn|Klabnik|Nichols|2023|pp=191-192}} This indirection can inhibit inlining and add a small runtime cost, but it keeps a single copy of the code and can reduce binary size. Only object-safe traits are eligible to be used as trait objects.{{sfn|Gjengset|2021|p=25}}",
+			"type": 2
+		},
+		{
+			"lineNumber": 531,
+			"offset": {
+				"from": 58016,
+				"to": 57621
+			},
+			"text": "",
+			"type": 0
+		},
+		{
+			"lineNumber": 532,
+			"offset": {
+				"from": 58017,
+				"to": 57622
+			},
+			"text": "However, Rust also uses a feature known as ''trait objects'' to accomplish [[dynamic dispatch]], a type of polymorphism where the implementation of a polymorphic operation is chosen at [[Runtime (program lifecycle phase)|runtime]]. This allows for behavior similar to [[duck typing]], where all data types that implement a given trait can be treated as functionally equivalent.{{sfn|Klabnik|Nichols|2023|loc=[https://doc.rust-lang.org/book/ch18-02-trait-objects.html 18.2. Using Trait Objects That Allow for Values of Different Types]}} Trait objects are declared using the syntax <code>dyn Tr</code> where <code>Tr</code> is a trait. Trait objects are dynamically sized, therefore they must be put behind a pointer, such as <code>Box</code>.{{sfn|Klabnik|Nichols|2019|pp=441–442}} The following example creates a list of objects where each object can be printed out using the <code>Display</code> trait:",
+			"type": 0
+		}
+	],
+	"from": {
+		"id": 1316925953,
+		"sections": [
+			{
+				"heading": "== History ==",
+				"level": 2,
+				"offset": 8712
+			},
+			{
+				"heading": "=== 2006–2009: Early years  ===",
+				"level": 3,
+				"offset": 8726
+			},
+			{
+				"heading": "=== 2009–2012: Mozilla sponsorship ===",
+				"level": 3,
+				"offset": 12356
+			},
+			{
+				"heading": "=== 2012–2015: Evolution ===",
+				"level": 3,
+				"offset": 15321
+			},
+			{
+				"heading": "=== 2015–2020: Servo and early adoption ===",
+				"level": 3,
+				"offset": 18675
+			},
+			{
+				"heading": "=== 2020–present: Mozilla layoffs and Rust Foundation ===",
+				"level": 3,
+				"offset": 22999
+			},
+			{
+				"heading": "== Syntax and features ==",
+				"level": 2,
+				"offset": 30536
+			},
+			{
+				"heading": "=== Hello World program ===",
+				"level": 3,
+				"offset": 31679
+			},
+			{
+				"heading": "=== Variables ===",
+				"level": 3,
+				"offset": 32219
+			},
+			{
+				"heading": "=== Block expressions and control flow ===",
+				"level": 3,
+				"offset": 34046
+			},
+			{
+				"heading": "==== {{rust|if}} expressions ====",
+				"level": 4,
+				"offset": 34717
+			},
+			{
+				"heading": "==== {{rust|while}} loops ====",
+				"level": 4,
+				"offset": 35707
+			},
+			{
+				"heading": "==== {{rust|for}} loops and iterators ====",
+				"level": 4,
+				"offset": 36092
+			},
+			{
+				"heading": "==== {{rust|loop}} and {{rust|break}} statements ====",
+				"level": 4,
+				"offset": 37087
+			},
+			{
+				"heading": "=== Pattern matching ===",
+				"level": 3,
+				"offset": 38112
+			},
+			{
+				"heading": "=== Types ===",
+				"level": 3,
+				"offset": 38765
+			},
+			{
+				"heading": "==== Primitive types ====",
+				"level": 4,
+				"offset": 39821
+			},
+			{
+				"heading": "==== Compound types ====",
+				"level": 4,
+				"offset": 42179
+			},
+			{
+				"heading": "=== Ownership and references ===",
+				"level": 3,
+				"offset": 42985
+			},
+			{
+				"heading": "==== Lifetimes ====",
+				"level": 4,
+				"offset": 46195
+			},
+			{
+				"heading": "=== User-defined types ===",
+				"level": 3,
+				"offset": 51001
+			},
+			{
+				"heading": "==== Standard library ====",
+				"level": 4,
+				"offset": 52005
+			},
+			{
+				"heading": "=== Pointers ===",
+				"level": 3,
+				"offset": 54385
+			},
+			{
+				"heading": "=== Type conversion ===",
+				"level": 3,
+				"offset": 54970
+			},
+			{
+				"heading": "=== Polymorphism ===",
+				"level": 3,
+				"offset": 55171
+			},
+			{
+				"heading": "==== Trait objects ====",
+				"level": 4,
+				"offset": 56999
+			},
+			{
+				"heading": "=== Memory safety ===",
+				"level": 3,
+				"offset": 59287
+			},
+			{
+				"heading": "=== Memory management ===",
+				"level": 3,
+				"offset": 61403
+			},
+			{
+				"heading": "=== Unsafe ===",
+				"level": 3,
+				"offset": 63433
+			},
+			{
+				"heading": "=== Macros ===",
+				"level": 3,
+				"offset": 67634
+			},
+			{
+				"heading": "==== Declarative macros ====",
+				"level": 4,
+				"offset": 67963
+			},
+			{
+				"heading": "==== Procedural macros ====",
+				"level": 4,
+				"offset": 68881
+			},
+			{
+				"heading": "=== Interface with C and C++ ===",
+				"level": 3,
+				"offset": 69818
+			},
+			{
+				"heading": "== Ecosystem ==",
+				"level": 2,
+				"offset": 71639
+			},
+			{
+				"heading": "=== Compiler ===",
+				"level": 3,
+				"offset": 72071
+			},
+			{
+				"heading": "=== Cargo ===",
+				"level": 3,
+				"offset": 73902
+			},
+			{
+				"heading": "=== Rustfmt ===",
+				"level": 3,
+				"offset": 75507
+			},
+			{
+				"heading": "=== Clippy ===",
+				"level": 3,
+				"offset": 75849
+			},
+			{
+				"heading": "=== Versioning system ===",
+				"level": 3,
+				"offset": 76638
+			},
+			{
+				"heading": "=== IDE support ===",
+				"level": 3,
+				"offset": 77550
+			},
+			{
+				"heading": "== Performance ==",
+				"level": 2,
+				"offset": 77933
+			},
+			{
+				"heading": "== Adoption ==",
+				"level": 2,
+				"offset": 82975
+			},
+			{
+				"heading": "== In academic research ==",
+				"level": 2,
+				"offset": 101297
+			},
+			{
+				"heading": "== Community ==",
+				"level": 2,
+				"offset": 103802
+			},
+			{
+				"heading": "=== Rust Foundation ===",
+				"level": 3,
+				"offset": 105198
+			},
+			{
+				"heading": "=== Governance teams ===",
+				"level": 3,
+				"offset": 108782
+			},
+			{
+				"heading": "== See also ==",
+				"level": 2,
+				"offset": 110007
+			},
+			{
+				"heading": "== Notes ==",
+				"level": 2,
+				"offset": 110314
+			},
+			{
+				"heading": "== References ==",
+				"level": 2,
+				"offset": 110350
+			},
+			{
+				"heading": "=== Book sources ===",
+				"level": 3,
+				"offset": 110367
+			},
+			{
+				"heading": "=== Others ===",
+				"level": 3,
+				"offset": 111452
+			},
+			{
+				"heading": "== External links ==",
+				"level": 2,
+				"offset": 113117
+			}
+		],
+		"slot_role": "main"
+	},
+	"to": {
+		"id": 1316608902,
+		"sections": [
+			{
+				"heading": "== History ==",
+				"level": 2,
+				"offset": 8712
+			},
+			{
+				"heading": "=== 2006–2009: Early years  ===",
+				"level": 3,
+				"offset": 8726
+			},
+			{
+				"heading": "=== 2009–2012: Mozilla sponsorship ===",
+				"level": 3,
+				"offset": 12356
+			},
+			{
+				"heading": "=== 2012–2015: Evolution ===",
+				"level": 3,
+				"offset": 15321
+			},
+			{
+				"heading": "=== 2015–2020: Servo and early adoption ===",
+				"level": 3,
+				"offset": 18675
+			},
+			{
+				"heading": "=== 2020–present: Mozilla layoffs and Rust Foundation ===",
+				"level": 3,
+				"offset": 22999
+			},
+			{
+				"heading": "== Syntax and features ==",
+				"level": 2,
+				"offset": 30536
+			},
+			{
+				"heading": "=== Hello World program ===",
+				"level": 3,
+				"offset": 31679
+			},
+			{
+				"heading": "=== Variables ===",
+				"level": 3,
+				"offset": 32219
+			},
+			{
+				"heading": "=== Block expressions and control flow ===",
+				"level": 3,
+				"offset": 34046
+			},
+			{
+				"heading": "==== {{rust|if}} expressions ====",
+				"level": 4,
+				"offset": 34717
+			},
+			{
+				"heading": "==== {{rust|while}} loops ====",
+				"level": 4,
+				"offset": 35707
+			},
+			{
+				"heading": "==== {{rust|for}} loops and iterators ====",
+				"level": 4,
+				"offset": 36092
+			},
+			{
+				"heading": "==== {{rust|loop}} and {{rust|break}} statements ====",
+				"level": 4,
+				"offset": 37087
+			},
+			{
+				"heading": "=== Pattern matching ===",
+				"level": 3,
+				"offset": 38112
+			},
+			{
+				"heading": "=== Types ===",
+				"level": 3,
+				"offset": 38765
+			},
+			{
+				"heading": "==== Primitive types ====",
+				"level": 4,
+				"offset": 39821
+			},
+			{
+				"heading": "==== Compound types ====",
+				"level": 4,
+				"offset": 42179
+			},
+			{
+				"heading": "=== Ownership and references ===",
+				"level": 3,
+				"offset": 42985
+			},
+			{
+				"heading": "==== Lifetimes ====",
+				"level": 4,
+				"offset": 46195
+			},
+			{
+				"heading": "=== User-defined types ===",
+				"level": 3,
+				"offset": 51001
+			},
+			{
+				"heading": "==== Standard library ====",
+				"level": 4,
+				"offset": 52005
+			},
+			{
+				"heading": "=== Pointers ===",
+				"level": 3,
+				"offset": 54385
+			},
+			{
+				"heading": "=== Type conversion ===",
+				"level": 3,
+				"offset": 54970
+			},
+			{
+				"heading": "=== Polymorphism ===",
+				"level": 3,
+				"offset": 55171
+			},
+			{
+				"heading": "==== Trait objects ====",
+				"level": 4,
+				"offset": 56999
+			},
+			{
+				"heading": "=== Memory safety ===",
+				"level": 3,
+				"offset": 58892
+			},
+			{
+				"heading": "=== Memory management ===",
+				"level": 3,
+				"offset": 61008
+			},
+			{
+				"heading": "=== Unsafe ===",
+				"level": 3,
+				"offset": 63038
+			},
+			{
+				"heading": "=== Macros ===",
+				"level": 3,
+				"offset": 67239
+			},
+			{
+				"heading": "==== Declarative macros ====",
+				"level": 4,
+				"offset": 67568
+			},
+			{
+				"heading": "==== Procedural macros ====",
+				"level": 4,
+				"offset": 68486
+			},
+			{
+				"heading": "=== Interface with C and C++ ===",
+				"level": 3,
+				"offset": 69423
+			},
+			{
+				"heading": "== Ecosystem ==",
+				"level": 2,
+				"offset": 71244
+			},
+			{
+				"heading": "=== Compiler ===",
+				"level": 3,
+				"offset": 71676
+			},
+			{
+				"heading": "=== Cargo ===",
+				"level": 3,
+				"offset": 73507
+			},
+			{
+				"heading": "=== Rustfmt ===",
+				"level": 3,
+				"offset": 75112
+			},
+			{
+				"heading": "=== Clippy ===",
+				"level": 3,
+				"offset": 75454
+			},
+			{
+				"heading": "=== Versioning system ===",
+				"level": 3,
+				"offset": 76243
+			},
+			{
+				"heading": "=== IDE support ===",
+				"level": 3,
+				"offset": 77155
+			},
+			{
+				"heading": "== Performance ==",
+				"level": 2,
+				"offset": 77538
+			},
+			{
+				"heading": "== Adoption ==",
+				"level": 2,
+				"offset": 82580
+			},
+			{
+				"heading": "== In academic research ==",
+				"level": 2,
+				"offset": 100902
+			},
+			{
+				"heading": "== Community ==",
+				"level": 2,
+				"offset": 103407
+			},
+			{
+				"heading": "=== Rust Foundation ===",
+				"level": 3,
+				"offset": 104803
+			},
+			{
+				"heading": "=== Governance teams ===",
+				"level": 3,
+				"offset": 108387
+			},
+			{
+				"heading": "== See also ==",
+				"level": 2,
+				"offset": 109612
+			},
+			{
+				"heading": "== Notes ==",
+				"level": 2,
+				"offset": 109919
+			},
+			{
+				"heading": "== References ==",
+				"level": 2,
+				"offset": 109955
+			},
+			{
+				"heading": "=== Book sources ===",
+				"level": 3,
+				"offset": 109972
+			},
+			{
+				"heading": "=== Others ===",
+				"level": 3,
+				"offset": 111057
+			},
+			{
+				"heading": "== External links ==",
+				"level": 2,
+				"offset": 112722
+			}
+		],
+		"slot_role": "main"
+	}
+}

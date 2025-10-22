@@ -109,3 +109,40 @@ pub struct RevisionInfo {
     pub license: LicenseModel,
     pub user: UserInfo,
 }
+
+#[derive(Clone, Copy, Debug, Deserialize)]
+pub struct DiffOffset {
+    pub from: Option<usize>,
+    pub to: Option<usize>,
+}
+
+#[derive(Clone, Debug, Deserialize)]
+pub struct DiffInfo {
+    #[serde(alias = "lineNumber")]
+    pub line_number: Option<usize>,
+    pub offset: DiffOffset,
+    pub text: String,
+    #[serde(alias = "type")]
+    pub type_id: usize,
+}
+
+#[derive(Clone, Debug, Deserialize)]
+pub struct DiffSection {
+    pub heading: String,
+    pub level: usize,
+    pub offset: usize,
+}
+
+#[derive(Clone, Debug, Deserialize)]
+pub struct DiffSections {
+    pub id: usize,
+    pub sections: Vec<DiffSection>,
+    pub slot_role: String,
+}
+
+#[derive(Clone, Debug, Deserialize)]
+pub struct Diff {
+    pub diff: Vec<DiffInfo>,
+    pub from: DiffSections,
+    pub to: DiffSections,
+}
