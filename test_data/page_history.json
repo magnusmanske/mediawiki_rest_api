@@ -1,0 +1,246 @@
+{
+	"revisions": [
+		{
+			"id": 1318205510,
+			"timestamp": "2025-10-22T14:47:24Z",
+			"minor": false,
+			"size": 114386,
+			"comment": "/* Variables */ If one insists on the type annotation, this can be said more concisely",
+			"user": {
+				"id": 11063468,
+				"name": "Caleb Stanford"
+			},
+			"delta": -193
+		},
+		{
+			"id": 1318098779,
+			"timestamp": "2025-10-21T22:36:46Z",
+			"minor": false,
+			"size": 114579,
+			"comment": "/* Variables */ Add type annotation to first example as per talk page, and explanation of type deduction.",
+			"user": {
+				"id": null,
+				"name": "24.50.56.74"
+			},
+			"delta": 254
+		},
+		{
+			"id": 1317282086,
+			"timestamp": "2025-10-17T09:24:20Z",
+			"minor": true,
+			"size": 114325,
+			"comment": "Per page move: Changed link from [[Class (computer programming)]] to [[Class (programming)]] using [[User:TarnishedPath/MovePlus.js|MovePlus]]",
+			"user": {
+				"id": 3736169,
+				"name": "TarnishedPath"
+			},
+			"delta": -9
+		},
+		{
+			"id": 1316925953,
+			"timestamp": "2025-10-15T07:59:08Z",
+			"minor": false,
+			"size": 114334,
+			"comment": "/* Trait objects */ [[MOS:STRAIGHT]]",
+			"user": {
+				"id": 28659337,
+				"name": "Paditor"
+			},
+			"delta": -4
+		},
+		{
+			"id": 1316917226,
+			"timestamp": "2025-10-15T06:43:26Z",
+			"minor": false,
+			"size": 114338,
+			"comment": "rewritten 'Trait objects' paragraph; now more user friendly.",
+			"user": {
+				"id": 50323893,
+				"name": "Hashmarket"
+			},
+			"delta": 399
+		},
+		{
+			"id": 1316608902,
+			"timestamp": "2025-10-13T13:49:08Z",
+			"minor": false,
+			"size": 113939,
+			"comment": "The iterator code snipped had a syntax error and would runtime panic due to overflow",
+			"user": {
+				"id": null,
+				"name": "2001:9E8:165E:7600:11CA:7B0E:8F3B:98D2"
+			},
+			"delta": 1
+		},
+		{
+			"id": 1316050918,
+			"timestamp": "2025-10-10T04:42:07Z",
+			"minor": false,
+			"size": 113938,
+			"comment": "/* See also */ Outline of the Rust programming language",
+			"user": {
+				"id": 20468248,
+				"name": "Wikideas1"
+			},
+			"delta": 47
+		},
+		{
+			"id": 1316005041,
+			"timestamp": "2025-10-09T23:07:52Z",
+			"minor": true,
+			"size": 113891,
+			"comment": "Updated the number of lint rules.",
+			"user": {
+				"id": 50377620,
+				"name": "JudoJava"
+			},
+			"delta": 7
+		},
+		{
+			"id": 1315806621,
+			"timestamp": "2025-10-08T19:32:53Z",
+			"minor": true,
+			"size": 113884,
+			"comment": "/* In academic research */",
+			"user": {
+				"id": 26536202,
+				"name": "Barçaforlife"
+			},
+			"delta": 0
+		},
+		{
+			"id": 1315701802,
+			"timestamp": "2025-10-08T04:37:18Z",
+			"minor": false,
+			"size": 113884,
+			"comment": "/* Community */ tone tweak",
+			"user": {
+				"id": 40388182,
+				"name": "Dbeef"
+			},
+			"delta": -20
+		},
+		{
+			"id": 1315701601,
+			"timestamp": "2025-10-08T04:35:02Z",
+			"minor": false,
+			"size": 113904,
+			"comment": "/* Community */ feel free to revert but it is outdated. it also doesn't get any third party coverage. don't think this is very helpful",
+			"user": {
+				"id": 40388182,
+				"name": "Dbeef"
+			},
+			"delta": -686
+		},
+		{
+			"id": 1315700964,
+			"timestamp": "2025-10-08T04:29:06Z",
+			"minor": false,
+			"size": 114590,
+			"comment": "/* 2015–2020: Servo and early adoption */ the source only compared to java",
+			"user": {
+				"id": 40388182,
+				"name": "Dbeef"
+			},
+			"delta": -185
+		},
+		{
+			"id": 1315700764,
+			"timestamp": "2025-10-08T04:26:48Z",
+			"minor": false,
+			"size": 114775,
+			"comment": "/* 2020–present: Mozilla layoffs and Rust Foundation */ overlink",
+			"user": {
+				"id": 40388182,
+				"name": "Dbeef"
+			},
+			"delta": -4
+		},
+		{
+			"id": 1315700707,
+			"timestamp": "2025-10-08T04:26:06Z",
+			"minor": false,
+			"size": 114779,
+			"comment": "/* 2020–present: Mozilla layoffs and Rust Foundation */ oddly specific things omitted",
+			"user": {
+				"id": 40388182,
+				"name": "Dbeef"
+			},
+			"delta": -41
+		},
+		{
+			"id": 1315700454,
+			"timestamp": "2025-10-08T04:23:10Z",
+			"minor": false,
+			"size": 114820,
+			"comment": "/* 2020–present: Mozilla layoffs and Rust Foundation */ don't think this is contributing anything",
+			"user": {
+				"id": 40388182,
+				"name": "Dbeef"
+			},
+			"delta": -675
+		},
+		{
+			"id": 1315700387,
+			"timestamp": "2025-10-08T04:22:16Z",
+			"minor": false,
+			"size": 115495,
+			"comment": "a separate section for trivia is jarring and not what a typical article reader wants; c/e",
+			"user": {
+				"id": 40388182,
+				"name": "Dbeef"
+			},
+			"delta": -35
+		},
+		{
+			"id": 1315700123,
+			"timestamp": "2025-10-08T04:19:16Z",
+			"minor": false,
+			"size": 115530,
+			"comment": "/* 2006–2009: Early years */ c/e",
+			"user": {
+				"id": 40388182,
+				"name": "Dbeef"
+			},
+			"delta": -29
+		},
+		{
+			"id": 1315367110,
+			"timestamp": "2025-10-06T07:26:16Z",
+			"minor": false,
+			"size": 115559,
+			"comment": "/* External links */ point to right template",
+			"user": {
+				"id": 49836368,
+				"name": "ChildrenWillListen"
+			},
+			"delta": 23
+		},
+		{
+			"id": 1315343989,
+			"timestamp": "2025-10-06T03:49:08Z",
+			"minor": false,
+			"size": 115536,
+			"comment": "/* External links */ {{Rust}}",
+			"user": {
+				"id": 20468248,
+				"name": "Wikideas1"
+			},
+			"delta": 9
+		},
+		{
+			"id": 1315275728,
+			"timestamp": "2025-10-05T19:58:18Z",
+			"minor": false,
+			"size": 115527,
+			"comment": "The company where he worked (and which sponsored the project) is named just \"Mozilla\"",
+			"user": {
+				"id": 39915224,
+				"name": "PatricKiwi"
+			},
+			"delta": -9
+		}
+	],
+	"latest": "https://en.wikipedia.org/w/rest.php/v1/page/Rust_%28programming_language%29/history",
+	"older": "https://en.wikipedia.org/w/rest.php/v1/page/Rust_%28programming_language%29/history?older_than=1315275728"
+}
