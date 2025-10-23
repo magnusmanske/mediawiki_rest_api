@@ -2,4 +2,6 @@ pub use crate::error::RestApiError;
 pub use crate::file::File;
 pub use crate::page::Page;
 pub use crate::rest_api::RestApi;
+pub use crate::revision::Revision;
+pub use crate::transform::Transform;
 pub use crate::utilities::*;

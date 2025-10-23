@@ -1,11 +1,9 @@
-use std::collections::HashMap;
-
-use serde_json::{Value, from_value};
-
 use crate::{
     error::RestApiError,
     prelude::{Diff, HtmlFlavor, Lint, RestApi, RevisionInfo},
 };
+use serde_json::{Value, from_value};
+use std::collections::HashMap;
 
 #[derive(Clone, Copy, Debug)]
 pub struct Revision {
