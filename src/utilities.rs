@@ -235,7 +235,7 @@ pub struct SearchResult {
     pub id: usize,
     pub key: String,
     pub title: String,
-    pub excerpt: String,
+    pub excerpt: Option<String>,
     pub anchor: Option<String>,
     pub matched_title: Option<String>,
     pub description: Option<String>,
