@@ -38,14 +38,34 @@ impl Transform {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::rest_api_builder::RestApiBuilder;
-    // use wiremock::matchers::{method, path};
-    // use wiremock::{Mock, MockServer, ResponseTemplate};
+    use wiremock::matchers::{body_json, header, method, path};
+    use wiremock::{Mock, MockServer, ResponseTemplate};
 
     #[tokio::test]
     async fn test_wikitext2html() {
-        let api = RestApiBuilder::wikipedia("en").build();
         let wikitext = "[[Rust (programming language)|]]";
+
+        // Set up mock server
+        let v: String =
+            std::fs::read_to_string("test_data/wikitext2html.html").expect("Test file missing");
+        let mock_path = "w/rest.php/v1/transform/wikitext/to/html";
+        let mock_server = MockServer::start().await;
+        let body = json!({
+            "wikitext": wikitext
+        });
+        Mock::given(method("POST"))
+            .and(path(mock_path))
+            .and(body_json(body))
+            .and(header(reqwest::header::CONTENT_TYPE, "application/json"))
+            .and(header(reqwest::header::ACCEPT, "text/html"))
+            .respond_with(ResponseTemplate::new(200).set_body_string(v))
+            .mount(&mock_server)
+            .await;
+        let api = RestApi::builder(&(mock_server.uri() + "/w/rest.php"))
+            .expect("Failed to create RestApi")
+            .build();
+
+        // let api = RestApiBuilder::wikipedia("en").build();
         let html = Transform::wikitext2html(wikitext, &api)
             .await
             .expect("Failed to transform wikitext to HTML");
