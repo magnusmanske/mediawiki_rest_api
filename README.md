@@ -17,8 +17,13 @@ let page = Page::new("Rust (programming language)");
 
 // ...retrieve basic information and wikitext
 let (page_info,wikitext) = page.get(&api, false).await.unwrap();
+
+// Convert some wikitext to Parsoid HTML.
+let html = Transform::wikitext2html("[[Foo|bar]]", &api).await.unwrap();
 ```
 
 # Status
 * `File`: implemented
 * `Page`: most `GET` methods implemented
+* `Revision`: most `GET` methods implemented
+* `Transform`: ~60% methods implemented
