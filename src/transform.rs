@@ -1,7 +1,7 @@
-use serde_json::json;
-
 use crate::{error::RestApiError, prelude::RestApi};
+use serde_json::json;
 use std::collections::HashMap;
+use urlencoding::encode;
 
 #[derive(Clone, Copy, Debug)]
 pub struct Transform;
@@ -18,6 +18,36 @@ impl Transform {
             "wikitext": wikitext.into()
         })
         .to_string();
+        let mut request = api
+            .mediawiki_request_builder(path, params, reqwest::Method::POST)
+            .await?
+            .body(body)
+            .build()?;
+        request
+            .headers_mut()
+            .insert(reqwest::header::CONTENT_TYPE, "application/json".parse()?);
+        request
+            .headers_mut()
+            .insert(reqwest::header::ACCEPT, "text/html".parse()?);
+
+        let response = api.execute(request).await?;
+        let ret: String = response.text().await?;
+        Ok(ret)
+    }
+
+    /// Transforms wikitext to HTML, using a title for context.
+    pub async fn wikitext2html_title<S1: Into<String>, S2: Into<String>>(
+        wikitext: S1,
+        title: S2,
+        api: &RestApi,
+    ) -> Result<String, RestApiError> {
+        let params = HashMap::new();
+        let wikitext: String = wikitext.into();
+        let body = json!({
+            "wikitext": wikitext
+        })
+        .to_string();
+        let path = format!("/transform/wikitext/to/html/{}", encode(&title.into()));
         let mut request = api
             .mediawiki_request_builder(path, params, reqwest::Method::POST)
             .await?
@@ -94,11 +124,44 @@ mod tests {
             .expect("Failed to create RestApi")
             .build();
 
-        // let api = RestApiBuilder::wikipedia("en").build();
         let html = Transform::wikitext2html(wikitext, &api)
             .await
             .expect("Failed to transform wikitext to HTML");
         assert_eq!(html, expected_html);
+    }
+
+    #[tokio::test]
+    async fn test_wikitext2html_title() {
+        let wikitext = "!{{FULLPAGENAME}}?";
+        let body = json!({
+            "wikitext": wikitext
+        });
+        let expected_html: String = std::fs::read_to_string("test_data/wikitext2html_title.html")
+            .expect("Test file missing");
+
+        // Set up mock server
+        let mock_path = format!(
+            "w/rest.php/v1/transform/wikitext/to/html/{}",
+            encode("Talk:Foo/Bar")
+        );
+        let mock_server = MockServer::start().await;
+        Mock::given(method("POST"))
+            .and(path(mock_path))
+            .and(body_json(body))
+            .and(header(reqwest::header::CONTENT_TYPE, "application/json"))
+            .and(header(reqwest::header::ACCEPT, "text/html"))
+            .respond_with(ResponseTemplate::new(200).set_body_string(&expected_html))
+            .mount(&mock_server)
+            .await;
+        let api = RestApi::builder(&(mock_server.uri() + "/w/rest.php"))
+            .expect("Failed to create RestApi")
+            .build();
+
+        // let api = crate::rest_api_builder::RestApiBuilder::wikipedia("en").build();
+        let html = Transform::wikitext2html_title(wikitext, "Talk:Foo/Bar", &api)
+            .await
+            .expect("Failed to transform wikitext to HTML");
+        assert_eq!(html.trim(), expected_html.trim());
     }
 
     #[tokio::test]
@@ -125,7 +188,6 @@ mod tests {
             .expect("Failed to create RestApi")
             .build();
 
-        // let api = RestApiBuilder::wikipedia("en").build();
         let wikitext = Transform::html2wikitext(html, &api)
             .await
             .expect("Failed to transform wikitext to HTML");
