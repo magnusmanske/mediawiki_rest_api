@@ -1,0 +1,23 @@
+{
+	"id": 1316925953,
+	"size": 114334,
+	"minor": false,
+	"timestamp": "2025-10-15T07:59:08Z",
+	"content_model": "wikitext",
+	"page": {
+		"id": 29414838,
+		"key": "Rust_(programming_language)",
+		"title": "Rust (programming language)"
+	},
+	"license": {
+		"url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en",
+		"title": "Creative Commons Attribution-Share Alike 4.0"
+	},
+	"user": {
+		"id": 28659337,
+		"name": "Paditor"
+	},
+	"comment": "/* Trait objects */ [[MOS:STRAIGHT]]",
+	"delta": -4,
+	"html_url": "https://en.wikipedia.org/w/rest.php/v1/revision/1316925953/html"
+}

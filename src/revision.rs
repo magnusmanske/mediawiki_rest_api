@@ -129,16 +129,46 @@ impl Revision {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::rest_api_builder::RestApiBuilder;
     use wiremock::matchers::{method, path};
     use wiremock::{Mock, MockServer, ResponseTemplate};
 
     const TEST_REVISION_ID: usize = 1316925953;
     const TEST_REVISION_OLD_ID: usize = 1316608902;
 
+    async fn get_mock_api(test_file: &str, test_path: &str) -> (RestApi, MockServer) {
+        let mock_path = format!("w/rest.php/v1{}", test_path.replace(' ', "%20"));
+        let mock_server = MockServer::start().await;
+
+        let test_text: String =
+            std::fs::read_to_string(format!("test_data/{test_file}")).expect("Test file missing");
+        if test_file.ends_with(".json") {
+            let json: Value = serde_json::from_str(&test_text).expect("Failed to parse JSON");
+            Mock::given(method("GET"))
+                .and(path(&mock_path))
+                .respond_with(ResponseTemplate::new(200).set_body_json(&json))
+                .mount(&mock_server)
+                .await;
+        } else {
+            Mock::given(method("GET"))
+                .and(path(&mock_path))
+                .respond_with(ResponseTemplate::new(200).set_body_string(&test_text))
+                .mount(&mock_server)
+                .await;
+        }
+
+        let api = RestApi::builder(&(mock_server.uri() + "/w/rest.php"))
+            .expect("Failed to create RestApi")
+            .build();
+        (api, mock_server)
+    }
+
     #[tokio::test]
     async fn test_get() {
-        let api = RestApiBuilder::wikipedia("en").build();
+        let (api, _mock_server) = get_mock_api(
+            "revision_get.json",
+            &format!("/revision/{TEST_REVISION_ID}"),
+        )
+        .await;
         let revision = Revision::new(TEST_REVISION_ID);
         let (revision_info, wikitext) = revision
             .get(&api)
@@ -150,7 +180,11 @@ mod tests {
 
     #[tokio::test]
     async fn test_get_html() {
-        let api = RestApiBuilder::wikipedia("en").build();
+        let (api, _mock_server) = get_mock_api(
+            "revision_get_html.html",
+            &format!("/revision/{TEST_REVISION_ID}/html"),
+        )
+        .await;
         let revision = Revision::new(TEST_REVISION_ID);
         let html = revision
             .get_html(&api, false, HtmlFlavor::View)
@@ -161,7 +195,11 @@ mod tests {
 
     #[tokio::test]
     async fn test_get_with_html() {
-        let api = RestApiBuilder::wikipedia("en").build();
+        let (api, _mock_server) = get_mock_api(
+            "revision_get_with_html.json",
+            &format!("/revision/{TEST_REVISION_ID}/with_html"),
+        )
+        .await;
         let revision = Revision::new(TEST_REVISION_ID);
         let (revision_info, html) = revision
             .get_with_html(&api, false, HtmlFlavor::View)
@@ -173,7 +211,11 @@ mod tests {
 
     #[tokio::test]
     async fn test_get_bare() {
-        let api = RestApiBuilder::wikipedia("en").build();
+        let (api, _mock_server) = get_mock_api(
+            "revision_get_bare.json",
+            &format!("/revision/{TEST_REVISION_ID}/bare"),
+        )
+        .await;
         let revision = Revision::new(TEST_REVISION_ID);
         let (revision_info, html_url) = revision
             .get_bare(&api)
@@ -188,21 +230,11 @@ mod tests {
 
     #[tokio::test]
     async fn test_get_compare() {
-        let v: String =
-            std::fs::read_to_string("test_data/revision_compare.json").expect("Test file missing");
-        let v: Value = serde_json::from_str(&v).expect("Failed to parse JSON");
-
-        let mock_path =
-            format!("w/rest.php/v1/revision/{TEST_REVISION_ID}/compare/{TEST_REVISION_OLD_ID}");
-        let mock_server = MockServer::start().await;
-        Mock::given(method("GET"))
-            .and(path(mock_path))
-            .respond_with(ResponseTemplate::new(200).set_body_json(&v))
-            .mount(&mock_server)
-            .await;
-        let api = RestApi::builder(&(mock_server.uri() + "/w/rest.php"))
-            .expect("Failed to create RestApi")
-            .build();
+        let (api, _mock_server) = get_mock_api(
+            "revision_compare.json",
+            &format!("/revision/{TEST_REVISION_ID}/compare/{TEST_REVISION_OLD_ID}"),
+        )
+        .await;
         let revision = Revision::new(TEST_REVISION_ID);
         let result = revision
             .get_compare(&api, TEST_REVISION_OLD_ID)
@@ -215,21 +247,11 @@ mod tests {
 
     #[tokio::test]
     async fn test_get_lint() {
-        let v: String =
-            std::fs::read_to_string("test_data/revision_lint.json").expect("Test file missing");
-        let v: Value = serde_json::from_str(&v).expect("Failed to parse JSON");
-
-        let mock_path = format!("w/rest.php/v1/revision/{TEST_REVISION_ID}/lint");
-        let mock_server = MockServer::start().await;
-        Mock::given(method("GET"))
-            .and(path(mock_path))
-            .respond_with(ResponseTemplate::new(200).set_body_json(&v))
-            .mount(&mock_server)
-            .await;
-        let api = RestApi::builder(&(mock_server.uri() + "/w/rest.php"))
-            .expect("Failed to create RestApi")
-            .build();
-
+        let (api, _mock_server) = get_mock_api(
+            "revision_lint.json",
+            &format!("/revision/{TEST_REVISION_ID}/lint"),
+        )
+        .await;
         let page = Revision::new(TEST_REVISION_ID);
         let lints = page
             .get_lint(&api)

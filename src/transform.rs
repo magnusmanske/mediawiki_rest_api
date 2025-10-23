@@ -73,15 +73,15 @@ mod tests {
     #[tokio::test]
     async fn test_wikitext2html() {
         let wikitext = "[[Rust (programming language)|]]";
-
-        // Set up mock server
-        let expected_html: String =
-            std::fs::read_to_string("test_data/wikitext2html.html").expect("Test file missing");
-        let mock_path = "w/rest.php/v1/transform/wikitext/to/html";
-        let mock_server = MockServer::start().await;
         let body = json!({
             "wikitext": wikitext
         });
+        let expected_html: String =
+            std::fs::read_to_string("test_data/wikitext2html.html").expect("Test file missing");
+
+        // Set up mock server
+        let mock_path = "w/rest.php/v1/transform/wikitext/to/html";
+        let mock_server = MockServer::start().await;
         Mock::given(method("POST"))
             .and(path(mock_path))
             .and(body_json(body))
