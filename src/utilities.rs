@@ -220,3 +220,29 @@ pub struct HistoryCounts {
     pub count: usize,
     pub limit: bool,
 }
+
+#[derive(Clone, Debug, Deserialize)]
+pub struct Thumbnail {
+    pub mimetype: String,
+    pub width: Option<usize>,
+    pub height: Option<usize>,
+    pub duration: Option<f64>,
+    pub url: String,
+}
+
+#[derive(Clone, Debug, Deserialize)]
+pub struct SearchResult {
+    pub id: usize,
+    pub key: String,
+    pub title: String,
+    pub excerpt: String,
+    pub anchor: Option<String>,
+    pub matched_title: Option<String>,
+    pub description: Option<String>,
+    pub thumbnail: Option<Thumbnail>,
+}
+
+#[derive(Clone, Debug, Deserialize)]
+pub struct SearchResults {
+    pub pages: Vec<SearchResult>,
+}

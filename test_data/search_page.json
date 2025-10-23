@@ -1,0 +1,618 @@
+{
+	"pages": [
+		{
+			"id": 29414838,
+			"key": "Rust_(programming_language)",
+			"title": "Rust (programming language)",
+			"excerpt": "<span class=\"searchmatch\">Rust</span> is a general-purpose <span class=\"searchmatch\">programming</span> <span class=\"searchmatch\">language</span>. It is noted for its emphasis on performance, type safety, concurrency, and memory safety. <span class=\"searchmatch\">Rust</span> supports",
+			"matched_title": null,
+			"anchor": null,
+			"description": "General-purpose programming language",
+			"thumbnail": {
+				"mimetype": "image/svg+xml",
+				"width": 60,
+				"height": 60,
+				"duration": null,
+				"url": "//upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Rust_programming_language_black_logo.svg/60px-Rust_programming_language_black_logo.svg.png"
+			}
+		},
+		{
+			"id": 144144,
+			"key": "List_of_programming_languages_by_type",
+			"title": "List of programming languages by type",
+			"excerpt": "Red Ring Ruby <span class=\"searchmatch\">Rust</span> Scheme SequenceL Smalltalk Source TREE-META Wolfram Mathematica (Wolfram <span class=\"searchmatch\">language</span>) Modular <span class=\"searchmatch\">programming</span> is a <span class=\"searchmatch\">programming</span> paradigm of organising",
+			"matched_title": null,
+			"anchor": null,
+			"description": "",
+			"thumbnail": null
+		},
+		{
+			"id": 81297551,
+			"key": "Outline_of_the_Rust_programming_language",
+			"title": "Outline of the Rust programming language",
+			"excerpt": "topical guide to <span class=\"searchmatch\">Rust</span>: <span class=\"searchmatch\">Rust</span> is a multi-paradigm <span class=\"searchmatch\">programming</span> <span class=\"searchmatch\">language</span> emphasizing performance, memory safety, and concurrency. <span class=\"searchmatch\">Rust</span> was initially developed",
+			"matched_title": null,
+			"anchor": null,
+			"description": "Overview of and topical guide to Rust",
+			"thumbnail": null
+		},
+		{
+			"id": 10933,
+			"key": "Functional_programming",
+			"title": "Functional programming",
+			"excerpt": "functional <span class=\"searchmatch\">programming</span> is a <span class=\"searchmatch\">programming</span> paradigm where <span class=\"searchmatch\">programs</span> are constructed by applying and composing functions. It is a declarative <span class=\"searchmatch\">programming</span> paradigm",
+			"matched_title": null,
+			"anchor": null,
+			"description": "Programming paradigm based on applying and composing functions",
+			"thumbnail": null
+		},
+		{
+			"id": 3406469,
+			"key": "Comparison_of_programming_languages",
+			"title": "Comparison of programming languages",
+			"excerpt": "<span class=\"searchmatch\">Programming</span> <span class=\"searchmatch\">languages</span> are used for controlling the behavior of a machine (often a computer). Like natural <span class=\"searchmatch\">languages</span>, <span class=\"searchmatch\">programming</span> <span class=\"searchmatch\">languages</span> follow rules",
+			"matched_title": null,
+			"anchor": null,
+			"description": "",
+			"thumbnail": null
+		},
+		{
+			"id": 66392073,
+			"key": "Rust_syntax",
+			"title": "Rust syntax",
+			"excerpt": "functional <span class=\"searchmatch\">programming</span> <span class=\"searchmatch\">languages</span> such as OCaml. Although <span class=\"searchmatch\">Rust</span> syntax is heavily influenced by the syntaxes of C and C++, the syntax of <span class=\"searchmatch\">Rust</span> is far more",
+			"matched_title": null,
+			"anchor": null,
+			"description": "Set of rules defining correctly structured programs for the Rust programming language",
+			"thumbnail": {
+				"mimetype": "image/png",
+				"width": 60,
+				"height": 28,
+				"duration": null,
+				"url": "//upload.wikimedia.org/wikipedia/commons/thumb/2/28/Screen1_2.png/60px-Screen1_2.png"
+			}
+		},
+		{
+			"id": 81074706,
+			"key": "Outline_of_the_C_programming_language",
+			"title": "Outline of the C programming language",
+			"excerpt": "general-purpose <span class=\"searchmatch\">programming</span> <span class=\"searchmatch\">language</span>, procedural <span class=\"searchmatch\">programming</span> <span class=\"searchmatch\">language</span>, compiled <span class=\"searchmatch\">language</span>, and statically typed <span class=\"searchmatch\">programming</span> <span class=\"searchmatch\">language</span>. It was created by",
+			"matched_title": null,
+			"anchor": null,
+			"description": "Programming language",
+			"thumbnail": null
+		},
+		{
+			"id": 73729965,
+			"key": "Mojo_(programming_language)",
+			"title": "Mojo (programming language)",
+			"excerpt": " specifically Python, with the performance of a system <span class=\"searchmatch\">programming</span> <span class=\"searchmatch\">language</span> such as C++, <span class=\"searchmatch\">Rust</span>, and Zig. As of October 2025[update], the Mojo compiler",
+			"matched_title": null,
+			"anchor": null,
+			"description": "Programming language optimized for artificial intelligence",
+			"thumbnail": null
+		},
+		{
+			"id": 72172767,
+			"key": "V_(programming_language)",
+			"title": "V (programming language)",
+			"excerpt": "<span class=\"searchmatch\">programming</span> portal Comparison of <span class=\"searchmatch\">programming</span> <span class=\"searchmatch\">languages</span> History of <span class=\"searchmatch\">programming</span> <span class=\"searchmatch\">languages</span> List of <span class=\"searchmatch\">programming</span> <span class=\"searchmatch\">languages</span> List of <span class=\"searchmatch\">programming</span> <span class=\"searchmatch\">languages</span> by",
+			"matched_title": null,
+			"anchor": null,
+			"description": "General-purpose programming language",
+			"thumbnail": {
+				"mimetype": "image/svg+xml",
+				"width": 60,
+				"height": 60,
+				"duration": null,
+				"url": "//upload.wikimedia.org/wikipedia/commons/thumb/e/e8/V_Logo_SVG.svg/60px-V_Logo_SVG.svg.png"
+			}
+		},
+		{
+			"id": 30806403,
+			"key": "List_of_concurrent_and_parallel_programming_languages",
+			"title": "List of concurrent and parallel programming languages",
+			"excerpt": "- The <span class=\"searchmatch\">Rust</span> <span class=\"searchmatch\">Programming</span> <span class=\"searchmatch\">Language</span>&quot;. doc.<span class=\"searchmatch\">rust</span>-lang.org. Retrieved 2022-10-11. Alan Kay The Early History Of Smalltalk &quot;Crystal <span class=\"searchmatch\">Programming</span> <span class=\"searchmatch\">Language</span> – Concurrency&quot;",
+			"matched_title": null,
+			"anchor": null,
+			"description": "",
+			"thumbnail": null
+		},
+		{
+			"id": 61049743,
+			"key": "Zig_(programming_language)",
+			"title": "Zig (programming language)",
+			"excerpt": "system <span class=\"searchmatch\">programming</span> <span class=\"searchmatch\">language</span> designed by Andrew Kelley. It is free and open-source software, released under an MIT License. A major goal of the <span class=\"searchmatch\">language</span> is",
+			"matched_title": null,
+			"anchor": null,
+			"description": "General-purpose programming language",
+			"thumbnail": {
+				"mimetype": "image/svg+xml",
+				"width": 60,
+				"height": 21,
+				"duration": null,
+				"url": "//upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Zig_logo_2020.svg/60px-Zig_logo_2020.svg.png"
+			}
+		},
+		{
+			"id": 41195462,
+			"key": "Comparison_of_functional_programming_languages",
+			"title": "Comparison of functional programming languages",
+			"excerpt": "&quot;The <span class=\"searchmatch\">Rust</span> <span class=\"searchmatch\">Programming</span> <span class=\"searchmatch\">Language</span>, Data Types&quot;. &quot;The <span class=\"searchmatch\">Rust</span> <span class=\"searchmatch\">Programming</span> <span class=\"searchmatch\">Language</span>, Traits&quot;. &quot;The <span class=\"searchmatch\">Rust</span> <span class=\"searchmatch\">Programming</span> <span class=\"searchmatch\">Language</span>, Enums&quot;. &quot;The <span class=\"searchmatch\">Rust</span> <span class=\"searchmatch\">Programming</span> Language",
+			"matched_title": null,
+			"anchor": null,
+			"description": "",
+			"thumbnail": null
+		},
+		{
+			"id": 76326711,
+			"key": "Gleam_(programming_language)",
+			"title": "Gleam (programming language)",
+			"excerpt": "Computer <span class=\"searchmatch\">programming</span> portal Free and open-source software portal Gleam is a general-purpose, concurrent, functional, high-level <span class=\"searchmatch\">programming</span> <span class=\"searchmatch\">language</span> that",
+			"matched_title": null,
+			"anchor": null,
+			"description": "Programming language",
+			"thumbnail": {
+				"mimetype": "image/svg+xml",
+				"width": 60,
+				"height": 57,
+				"duration": null,
+				"url": "//upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Gleam_Lucy.svg/60px-Gleam_Lucy.svg.png"
+			}
+		},
+		{
+			"id": 71381995,
+			"key": "Rust_for_Linux",
+			"title": "Rust for Linux",
+			"excerpt": "<span class=\"searchmatch\">Rust</span> for Linux is an ongoing project started in 2020 to add <span class=\"searchmatch\">Rust</span> as a <span class=\"searchmatch\">programming</span> <span class=\"searchmatch\">language</span> that can be used within the Linux kernel software, which has",
+			"matched_title": null,
+			"anchor": null,
+			"description": "Project for adding Rust language to the Linux kernel",
+			"thumbnail": {
+				"mimetype": "image/svg+xml",
+				"width": 60,
+				"height": 60,
+				"duration": null,
+				"url": "//upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Rust_for_Linux_logo.svg/60px-Rust_for_Linux_logo.svg.png"
+			}
+		},
+		{
+			"id": 243881,
+			"key": "D_(programming_language)",
+			"title": "D (programming language)",
+			"excerpt": "<span class=\"searchmatch\">programming</span> <span class=\"searchmatch\">language</span> to provide a more thorough treatment of lifetimes within the D <span class=\"searchmatch\">programming</span> <span class=\"searchmatch\">language</span> (influenced by ideas from <span class=\"searchmatch\">Rust</span> <span class=\"searchmatch\">programming</span> language)",
+			"matched_title": null,
+			"anchor": null,
+			"description": "Multi-paradigm system programming language",
+			"thumbnail": {
+				"mimetype": "image/svg+xml",
+				"width": 60,
+				"height": 45,
+				"duration": null,
+				"url": "//upload.wikimedia.org/wikipedia/commons/thumb/2/24/D_Programming_Language_logo.svg/60px-D_Programming_Language_logo.svg.png"
+			}
+		},
+		{
+			"id": 81118035,
+			"key": "Outline_of_the_Python_programming_language",
+			"title": "Outline of the Python programming language",
+			"excerpt": "Outline of the JavaScript <span class=\"searchmatch\">programming</span> <span class=\"searchmatch\">language</span> Outline of the Perl <span class=\"searchmatch\">programming</span> <span class=\"searchmatch\">language</span> Outline of the <span class=\"searchmatch\">Rust</span> <span class=\"searchmatch\">programming</span> <span class=\"searchmatch\">language</span> Wikibooks has a book on",
+			"matched_title": null,
+			"anchor": null,
+			"description": "Overview of and topical guide to Python",
+			"thumbnail": null
+		},
+		{
+			"id": 81186004,
+			"key": "List_of_Rust_software_and_tools",
+			"title": "List of Rust software and tools",
+			"excerpt": "This is a list of software and <span class=\"searchmatch\">programming</span> tools for the <span class=\"searchmatch\">Rust</span> <span class=\"searchmatch\">programming</span> <span class=\"searchmatch\">language</span>, including IDEs, compilers, libraries, verification and debugging tools",
+			"matched_title": null,
+			"anchor": null,
+			"description": "Rust software and development tools",
+			"thumbnail": null
+		},
+		{
+			"id": 59400,
+			"key": "Rust_(fungus)",
+			"title": "Rust (fungus)",
+			"excerpt": "<span class=\"searchmatch\">Rust</span> on onions Fungi portal Fungus Leaf <span class=\"searchmatch\">rust</span> (barley) <span class=\"searchmatch\">Rust</span> (<span class=\"searchmatch\">programming</span> <span class=\"searchmatch\">language</span>) (named after the <span class=\"searchmatch\">Rust</span> fungus) Smut (fungus) Soybean <span class=\"searchmatch\">rust</span> Stem <span class=\"searchmatch\">rust</span> Wheat",
+			"matched_title": null,
+			"anchor": null,
+			"description": "Order of fungi",
+			"thumbnail": {
+				"mimetype": "image/jpeg",
+				"width": 60,
+				"height": 21,
+				"duration": null,
+				"url": "//upload.wikimedia.org/wikipedia/commons/thumb/5/54/Bruine_roest_op_tarwe_%28Puccinia_recondita_f.sp._tritici_on_Triticum_aestivum%29.jpg/60px-Bruine_roest_op_tarwe_%28Puccinia_recondita_f.sp._tritici_on_Triticum_aestivum%29.jpg"
+			}
+		},
+		{
+			"id": 943685,
+			"key": "Expression-oriented_programming_language",
+			"title": "Expression-oriented programming language",
+			"excerpt": "Kotlin OCaml Command–query separation Functional <span class=\"searchmatch\">programming</span> &quot;Glossary - The <span class=\"searchmatch\">Rust</span> <span class=\"searchmatch\">Programming</span> <span class=\"searchmatch\">Language</span>&quot;. web.mit.edu. Retrieved 2022-07-06. Syme, Don (2020-06-14)",
+			"matched_title": null,
+			"anchor": null,
+			"description": null,
+			"thumbnail": null
+		},
+		{
+			"id": 226843,
+			"key": "Comparison_of_multi-paradigm_programming_languages",
+			"title": "Comparison of multi-paradigm programming languages",
+			"excerpt": "January 2015. The <span class=\"searchmatch\">Rust</span> Reference §6.1.3.1 An Overview of the Scala <span class=\"searchmatch\">Programming</span> <span class=\"searchmatch\">Language</span> Scala <span class=\"searchmatch\">Language</span> Specification &quot;Tcl <span class=\"searchmatch\">Programming</span>/Introduction&quot;. en",
+			"matched_title": null,
+			"anchor": null,
+			"description": "",
+			"thumbnail": null
+		},
+		{
+			"id": 4627591,
+			"key": "Rust_(disambiguation)",
+			"title": "Rust (disambiguation)",
+			"excerpt": "affects cereal crops <span class=\"searchmatch\">Rust</span> (color), a red-brown color resembling iron oxide <span class=\"searchmatch\">Rust</span> (<span class=\"searchmatch\">programming</span> <span class=\"searchmatch\">language</span>), a <span class=\"searchmatch\">programming</span> <span class=\"searchmatch\">language</span> focused on performance",
+			"matched_title": null,
+			"anchor": null,
+			"description": "Topics referred to by the same term",
+			"thumbnail": null
+		},
+		{
+			"id": 144148,
+			"key": "Generational_list_of_programming_languages",
+			"title": "Generational list of programming languages",
+			"excerpt": "&quot;genealogy&quot; of <span class=\"searchmatch\">programming</span> <span class=\"searchmatch\">languages</span>. <span class=\"searchmatch\">Languages</span> are categorized under the ancestor <span class=\"searchmatch\">language</span> with the strongest influence. Those ancestor <span class=\"searchmatch\">languages</span> are listed",
+			"matched_title": null,
+			"anchor": null,
+			"description": "",
+			"thumbnail": null
+		},
+		{
+			"id": 459018,
+			"key": "Pointer_(computer_programming)",
+			"title": "Pointer (computer programming)",
+			"excerpt": "Donald Knuth, Structured <span class=\"searchmatch\">Programming</span>, with go to Statements In computer science, a pointer is an object in many <span class=\"searchmatch\">programming</span> <span class=\"searchmatch\">languages</span> that stores a memory",
+			"matched_title": null,
+			"anchor": null,
+			"description": "Object which stores memory addresses in a computer program",
+			"thumbnail": {
+				"mimetype": "image/svg+xml",
+				"width": 60,
+				"height": 67,
+				"duration": null,
+				"url": "//upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Pointers.svg/60px-Pointers.svg.png"
+			}
+		},
+		{
+			"id": 71357638,
+			"key": "Carbon_(programming_language)",
+			"title": "Carbon (programming language)",
+			"excerpt": "how a <span class=\"searchmatch\">program</span> might be written in Carbon and C++: Computer <span class=\"searchmatch\">programming</span> portal Comparison of <span class=\"searchmatch\">programming</span> <span class=\"searchmatch\">languages</span> Timeline of <span class=\"searchmatch\">programming</span> <span class=\"searchmatch\">languages</span> C++",
+			"matched_title": null,
+			"anchor": null,
+			"description": "Programming language designed for interoperability with C++",
+			"thumbnail": {
+				"mimetype": "image/png",
+				"width": 60,
+				"height": 60,
+				"duration": null,
+				"url": "//upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Carbon_logo.png/60px-Carbon_logo.png"
+			}
+		},
+		{
+			"id": 3893690,
+			"key": "Trait_(computer_programming)",
+			"title": "Trait (computer programming)",
+			"excerpt": "&quot;Traits - Introduction to <span class=\"searchmatch\">Programming</span> Using <span class=\"searchmatch\">Rust</span>&quot;. Archived from the original on 2023-05-29. &quot;Traits - the <span class=\"searchmatch\">Rust</span> <span class=\"searchmatch\">Programming</span> <span class=\"searchmatch\">Language</span>&quot;. &quot;Traits: Composable",
+			"matched_title": null,
+			"anchor": null,
+			"description": "Set of methods that extend the functionality of a class",
+			"thumbnail": null
+		},
+		{
+			"id": 68638997,
+			"key": "Tokio_(software)",
+			"title": "Tokio (software)",
+			"excerpt": "Tokio is a software library for the <span class=\"searchmatch\">Rust</span> <span class=\"searchmatch\">programming</span> <span class=\"searchmatch\">language</span>. It provides a runtime and functions that enable the use of asynchronous I/O, allowing for",
+			"matched_title": null,
+			"anchor": null,
+			"description": "Library for Rust programming language",
+			"thumbnail": {
+				"mimetype": "image/svg+xml",
+				"width": 60,
+				"height": 54,
+				"duration": null,
+				"url": "//upload.wikimedia.org/wikipedia/commons/thumb/6/60/Tokio_logo.svg/60px-Tokio_logo.svg.png"
+			}
+		},
+		{
+			"id": 891926,
+			"key": "General-purpose_programming_language",
+			"title": "General-purpose programming language",
+			"excerpt": "general-purpose <span class=\"searchmatch\">language</span> that supported scientific, commercial, and systems <span class=\"searchmatch\">programming</span>. Indeed, a subset of PL/I was used as the standard systems <span class=\"searchmatch\">programming</span> language",
+			"matched_title": null,
+			"anchor": null,
+			"description": "Programming language used in many domains",
+			"thumbnail": null
+		},
+		{
+			"id": 18692,
+			"key": "Lint_(software)",
+			"title": "Lint (software)",
+			"excerpt": "Barr Group. <span class=\"searchmatch\">rust</span>-lang/rustfmt, The <span class=\"searchmatch\">Rust</span> <span class=\"searchmatch\">Programming</span> <span class=\"searchmatch\">Language</span>, 2025-01-20, retrieved 2025-01-21 Darwin, Ian F. (1991). Checking C <span class=\"searchmatch\">Programs</span> with Lint: C",
+			"matched_title": null,
+			"anchor": null,
+			"description": "Tool to flag poor computer code",
+			"thumbnail": null
+		},
+		{
+			"id": 20560,
+			"key": "Macro_(computer_science)",
+			"title": "Macro (computer science)",
+			"excerpt": "&quot;About - Nemerle <span class=\"searchmatch\">programming</span> <span class=\"searchmatch\">language</span> official site&quot;. nemerle.org. Retrieved 2021-04-05. &quot;Macros - The <span class=\"searchmatch\">Rust</span> <span class=\"searchmatch\">Programming</span> <span class=\"searchmatch\">Language</span>&quot;. doc.<span class=\"searchmatch\">rust</span>-lang.org. Retrieved",
+			"matched_title": null,
+			"anchor": null,
+			"description": "Rule for substituting a set input with a set output",
+			"thumbnail": {
+				"mimetype": "image/png",
+				"width": 60,
+				"height": 50,
+				"duration": null,
+				"url": "//upload.wikimedia.org/wikipedia/commons/thumb/8/82/Jedit_macro_recorder.png/60px-Jedit_macro_recorder.png"
+			}
+		},
+		{
+			"id": 370882,
+			"key": "Programming_tool",
+			"title": "Programming tool",
+			"excerpt": "A <span class=\"searchmatch\">programming</span> tool or software development tool is a computer <span class=\"searchmatch\">program</span> that is used to develop another computer <span class=\"searchmatch\">program</span>, usually by helping the developer",
+			"matched_title": null,
+			"anchor": null,
+			"description": "Computer program used to develop another program",
+			"thumbnail": null
+		},
+		{
+			"id": 60786278,
+			"key": "Deno_(software)",
+			"title": "Deno (software)",
+			"excerpt": "WebAssembly that is based on the V8 JavaScript engine and the <span class=\"searchmatch\">Rust</span> <span class=\"searchmatch\">programming</span> <span class=\"searchmatch\">language</span>. Deno was co-created by Ryan Dahl, the creator of Node.js and",
+			"matched_title": null,
+			"anchor": null,
+			"description": "Secure JavaScript and TypeScript runtime",
+			"thumbnail": {
+				"mimetype": "image/svg+xml",
+				"width": 60,
+				"height": 60,
+				"duration": null,
+				"url": "//upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Deno_Logo_2024.svg/60px-Deno_Logo_2024.svg.png"
+			}
+		},
+		{
+			"id": 29090,
+			"key": "Software_testing",
+			"title": "Software testing",
+			"excerpt": "plus when <span class=\"searchmatch\">programming</span> tools/text editors check source code structure or compilers (pre-compilers) check syntax and data flow as static <span class=\"searchmatch\">program</span> analysis",
+			"matched_title": null,
+			"anchor": null,
+			"description": "Checking software against a standard",
+			"thumbnail": {
+				"mimetype": "image/jpeg",
+				"width": 60,
+				"height": 40,
+				"duration": null,
+				"url": "//upload.wikimedia.org/wikipedia/commons/thumb/0/05/TestingCup-Polish-Championship-in-Software-Testing-Katowice-2016.jpg/60px-TestingCup-Polish-Championship-in-Software-Testing-Katowice-2016.jpg"
+			}
+		},
+		{
+			"id": 472805,
+			"key": "System_programming_language",
+			"title": "System programming language",
+			"excerpt": "high-level <span class=\"searchmatch\">programming</span> concepts like structured <span class=\"searchmatch\">programming</span>. Examples include Executive Systems Problem Oriented <span class=\"searchmatch\">Language</span> (ESPOL) and Systems <span class=\"searchmatch\">Programming</span> Language",
+			"matched_title": null,
+			"anchor": null,
+			"description": "Class of computer programming languages",
+			"thumbnail": null
+		},
+		{
+			"id": 144146,
+			"key": "List_of_programming_languages",
+			"title": "List of programming languages",
+			"excerpt": "to notable <span class=\"searchmatch\">programming</span> <span class=\"searchmatch\">languages</span>, in current or historical use. Dialects of BASIC (which have their own page), esoteric <span class=\"searchmatch\">programming</span> <span class=\"searchmatch\">languages</span>, and markup",
+			"matched_title": null,
+			"anchor": null,
+			"description": "",
+			"thumbnail": null
+		},
+		{
+			"id": 7645,
+			"key": "Cyclone_(programming_language)",
+			"title": "Cyclone (programming language)",
+			"excerpt": "The Cyclone <span class=\"searchmatch\">programming</span> <span class=\"searchmatch\">language</span> was intended to be a safe dialect of the C <span class=\"searchmatch\">language</span>. It avoids buffer overflows and other vulnerabilities that are possible",
+			"matched_title": null,
+			"anchor": null,
+			"description": "Memory-safe dialect of the C programming language",
+			"thumbnail": null
+		},
+		{
+			"id": 365497,
+			"key": "Non-English-based_programming_languages",
+			"title": "Non-English-based programming languages",
+			"excerpt": "Non-English-based <span class=\"searchmatch\">programming</span> <span class=\"searchmatch\">languages</span> are <span class=\"searchmatch\">programming</span> <span class=\"searchmatch\">languages</span> that do not use keywords taken from or inspired by English vocabulary. The use of the",
+			"matched_title": null,
+			"anchor": null,
+			"description": "",
+			"thumbnail": null
+		},
+		{
+			"id": 93817,
+			"key": "Data_type",
+			"title": "Data type",
+			"excerpt": "wrap on overflow. In <span class=\"searchmatch\">Rust</span> this 32-bit integer type is denoted i32 and panics on overflow in debug mode. Most <span class=\"searchmatch\">programming</span> <span class=\"searchmatch\">languages</span> also allow the programmer",
+			"matched_title": null,
+			"anchor": null,
+			"description": "Attribute of data",
+			"thumbnail": {
+				"mimetype": "image/svg+xml",
+				"width": 60,
+				"height": 86,
+				"duration": null,
+				"url": "//upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Python_3._The_standard_type_hierarchy-en.svg/60px-Python_3._The_standard_type_hierarchy-en.svg.png"
+			}
+		},
+		{
+			"id": 579061,
+			"key": "Monad_(functional_programming)",
+			"title": "Monad (functional programming)",
+			"excerpt": "Typically they are expressed as some kind of enumerated type. In the <span class=\"searchmatch\">Rust</span> <span class=\"searchmatch\">programming</span> <span class=\"searchmatch\">language</span> it is called Option&lt;T&gt; and variants of this type can either be",
+			"matched_title": null,
+			"anchor": null,
+			"description": "Design pattern in functional programming to build generic types",
+			"thumbnail": null
+		},
+		{
+			"id": 355711,
+			"key": "Integration_testing",
+			"title": "Integration testing",
+			"excerpt": "language C++ programming language Java programming language JavaScript programming language Python <span class=\"searchmatch\">programming</span> <span class=\"searchmatch\">language</span> <span class=\"searchmatch\">Rust</span> <span class=\"searchmatch\">programming</span> <span class=\"searchmatch\">language</span> v t e",
+			"matched_title": null,
+			"anchor": null,
+			"description": "Type of software testing",
+			"thumbnail": null
+		},
+		{
+			"id": 26356139,
+			"key": "Composition_over_inheritance",
+			"title": "Composition over inheritance",
+			"excerpt": "2016-10-01. &quot;Characteristics of Object-Oriented <span class=\"searchmatch\">Languages</span> - The <span class=\"searchmatch\">Rust</span> <span class=\"searchmatch\">Programming</span> <span class=\"searchmatch\">Language</span>&quot;. doc.<span class=\"searchmatch\">rust</span>-lang.org. Retrieved 2022-10-10. &quot;What&#039;s new in C#",
+			"matched_title": null,
+			"anchor": null,
+			"description": "Software design pattern",
+			"thumbnail": {
+				"mimetype": "image/svg+xml",
+				"width": 60,
+				"height": 47,
+				"duration": null,
+				"url": "//upload.wikimedia.org/wikipedia/commons/thumb/b/ba/UML_diagram_of_composition_over_inheritance.svg/60px-UML_diagram_of_composition_over_inheritance.svg.png"
+			}
+		},
+		{
+			"id": 37328654,
+			"key": "Servo_(software)",
+			"title": "Servo (software)",
+			"excerpt": "the memory safety properties and concurrency features of the <span class=\"searchmatch\">Rust</span> <span class=\"searchmatch\">programming</span> <span class=\"searchmatch\">language</span>. It seeks to create a highly parallel environment, in which rendering",
+			"matched_title": null,
+			"anchor": null,
+			"description": "Experimental browser engine",
+			"thumbnail": {
+				"mimetype": "image/png",
+				"width": 60,
+				"height": 43,
+				"duration": null,
+				"url": "//upload.wikimedia.org/wikipedia/commons/thumb/1/18/Servo_showing_wiki_-_12_Dec_2024.png/60px-Servo_showing_wiki_-_12_Dec_2024.png"
+			}
+		},
+		{
+			"id": 81107725,
+			"key": "Outline_of_the_Java_programming_language",
+			"title": "Outline of the Java programming language",
+			"excerpt": "JavaScript <span class=\"searchmatch\">programming</span> <span class=\"searchmatch\">language</span> Outline of the Perl <span class=\"searchmatch\">programming</span> <span class=\"searchmatch\">language</span> Outline of the Python <span class=\"searchmatch\">programming</span> <span class=\"searchmatch\">language</span> Outline of the <span class=\"searchmatch\">Rust</span> <span class=\"searchmatch\">programming</span> <span class=\"searchmatch\">language</span> Oracle",
+			"matched_title": null,
+			"anchor": null,
+			"description": "Overview of and topical guide to Java",
+			"thumbnail": null
+		},
+		{
+			"id": 170173,
+			"key": "Interface_(object-oriented_programming)",
+			"title": "Interface (object-oriented programming)",
+			"excerpt": "(generic <span class=\"searchmatch\">programming</span>) Delegation (<span class=\"searchmatch\">programming</span>) Class (computer science) Application <span class=\"searchmatch\">programming</span> interface Use of these terms varies by <span class=\"searchmatch\">programming</span> <span class=\"searchmatch\">language</span>. Java",
+			"matched_title": null,
+			"anchor": null,
+			"description": "Abstraction of a class",
+			"thumbnail": null
+		},
+		{
+			"id": 42020002,
+			"key": "HHVM",
+			"title": "HHVM",
+			"excerpt": "(JIT) compilation that serves as an execution engine for the Hack <span class=\"searchmatch\">programming</span> <span class=\"searchmatch\">language</span>. By using the principle of JIT compilation, Hack code is first transformed",
+			"matched_title": null,
+			"anchor": null,
+			"description": "Process virtual machine developed by Meta",
+			"thumbnail": null
+		},
+		{
+			"id": 6021,
+			"key": "C_(programming_language)",
+			"title": "C (programming language)",
+			"excerpt": "C is a general-purpose <span class=\"searchmatch\">programming</span> <span class=\"searchmatch\">language</span>. It was created in the 1970s by Dennis Ritchie and remains widely used and influential. By design, C gives",
+			"matched_title": null,
+			"anchor": null,
+			"description": "General-purpose programming language",
+			"thumbnail": {
+				"mimetype": "image/svg+xml",
+				"width": 60,
+				"height": 63,
+				"duration": null,
+				"url": "//upload.wikimedia.org/wikipedia/commons/thumb/3/35/The_C_Programming_Language_logo.svg/60px-The_C_Programming_Language_logo.svg.png"
+			}
+		},
+		{
+			"id": 50037237,
+			"key": "Redox_(disambiguation)",
+			"title": "Redox (disambiguation)",
+			"excerpt": "may also refer to: RedoxOS, an operating system written in the <span class=\"searchmatch\">Rust</span> <span class=\"searchmatch\">programming</span> <span class=\"searchmatch\">language</span> Redox Brands, a former company established in Ohio, US REDOX,",
+			"matched_title": null,
+			"anchor": null,
+			"description": "Topics referred to by the same term",
+			"thumbnail": null
+		},
+		{
+			"id": 37085,
+			"key": "Software_bug",
+			"title": "Software bug",
+			"excerpt": "guidelines and defensive <span class=\"searchmatch\">programming</span> can prevent easy-to-miss typographical errors (typos). For example, most C-family <span class=\"searchmatch\">programming</span> <span class=\"searchmatch\">languages</span> allow the omission",
+			"matched_title": null,
+			"anchor": null,
+			"description": "Inherent flaw in computer instructions",
+			"thumbnail": null
+		},
+		{
+			"id": 15881,
+			"key": "Java_(programming_language)",
+			"title": "Java (programming language)",
+			"excerpt": "Java is a high-level, general-purpose, memory-safe, object-oriented <span class=\"searchmatch\">programming</span> <span class=\"searchmatch\">language</span>. It is intended to let programmers write once, run anywhere (WORA)",
+			"matched_title": null,
+			"anchor": null,
+			"description": "Object-oriented programming language",
+			"thumbnail": null
+		},
+		{
+			"id": 76039382,
+			"key": "BlueOS",
+			"title": "BlueOS",
+			"excerpt": "development since 2018, the operating system core is written with the <span class=\"searchmatch\">Rust</span> <span class=\"searchmatch\">programming</span> <span class=\"searchmatch\">language</span>, which is open source, released on November 1, 2023, via 2023",
+			"matched_title": null,
+			"anchor": null,
+			"description": "Operating system developed by Vivo",
+			"thumbnail": null
+		},
+		{
+			"id": 23862,
+			"key": "Python_(programming_language)",
+			"title": "Python (programming language)",
+			"excerpt": "supports multiple <span class=\"searchmatch\">programming</span> paradigms, including structured (particularly procedural), object-oriented and functional <span class=\"searchmatch\">programming</span>. Guido van Rossum",
+			"matched_title": null,
+			"anchor": null,
+			"description": "General-purpose programming language",
+			"thumbnail": {
+				"mimetype": "image/svg+xml",
+				"width": 60,
+				"height": 60,
+				"duration": null,
+				"url": "//upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/60px-Python-logo-notext.svg.png"
+			}
+		}
+	]
+}

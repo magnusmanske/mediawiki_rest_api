@@ -45,6 +45,7 @@ pub mod prelude;
 pub mod rest_api;
 pub mod rest_api_builder;
 pub mod revision;
+pub mod search;
 pub mod transform;
 pub mod utilities;
 
