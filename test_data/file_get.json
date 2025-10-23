@@ -1,0 +1,35 @@
+{
+	"title": "Commons-logo.svg",
+	"file_description_url": "//en.wikipedia.org/wiki/File:Commons-logo.svg",
+	"latest": {
+		"timestamp": "2016-04-05T22:33:52Z",
+		"user": {
+			"id": 161142,
+			"name": "RHaworth"
+		}
+	},
+	"preferred": {
+		"mediatype": "DRAWING",
+		"size": null,
+		"width": 446,
+		"height": 599,
+		"duration": null,
+		"url": "//upload.wikimedia.org/wikipedia/en/thumb/4/4a/Commons-logo.svg/500px-Commons-logo.svg.png"
+	},
+	"original": {
+		"mediatype": "DRAWING",
+		"size": 932,
+		"width": 1024,
+		"height": 1376,
+		"duration": null,
+		"url": "//upload.wikimedia.org/wikipedia/en/4/4a/Commons-logo.svg"
+	},
+	"thumbnail": {
+		"mediatype": "DRAWING",
+		"size": 932,
+		"width": 1024,
+		"height": 1376,
+		"duration": null,
+		"url": "//upload.wikimedia.org/wikipedia/en/thumb/4/4a/Commons-logo.svg/1024px-Commons-logo.svg.png"
+	}
+}
