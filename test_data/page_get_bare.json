@@ -1,0 +1,15 @@
+{
+	"id": 29414838,
+	"key": "Rust_(programming_language)",
+	"title": "Rust (programming language)",
+	"latest": {
+		"id": 1318205510,
+		"timestamp": "2025-10-22T14:47:24Z"
+	},
+	"content_model": "wikitext",
+	"license": {
+		"url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en",
+		"title": "Creative Commons Attribution-Share Alike 4.0"
+	},
+	"html_url": "https://en.wikipedia.org/w/rest.php/v1/page/Rust%20%28programming%20language%29/html"
+}

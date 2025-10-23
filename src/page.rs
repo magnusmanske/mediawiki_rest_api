@@ -234,9 +234,30 @@ mod tests {
     use wiremock::matchers::{method, path};
     use wiremock::{Mock, MockServer, ResponseTemplate};
 
+    pub(crate) async fn get_mock_api(test_file: &str, test_path: &str) -> crate::prelude::RestApi {
+        // Switch to `true` to use live server
+        if false {
+            return RestApiBuilder::wikipedia("en").build();
+        }
+        let v: String =
+            std::fs::read_to_string(format!("test_data/{test_file}")).expect("Test file missing");
+        let v: Value = serde_json::from_str(&v).expect("Failed to parse JSON");
+
+        let mock_path = format!("w/rest.php/v1{}", test_path.replace(' ', "%20"));
+        let mock_server = MockServer::start().await;
+        Mock::given(method("GET"))
+            .and(path(&mock_path))
+            .respond_with(ResponseTemplate::new(200).set_body_json(&v))
+            .mount(&mock_server)
+            .await;
+        RestApi::builder(&(mock_server.uri() + "/w/rest.php"))
+            .expect("Failed to create RestApi")
+            .build()
+    }
+
     #[tokio::test]
     async fn test_get() {
-        let api = RestApiBuilder::wikipedia("en").build();
+        let api = get_mock_api("page_get.json", "/page/Rust (programming language)").await;
         let page = Page::new("Rust (programming language)");
         let (page_info, wikitext) = page
             .get(&api, false)
@@ -248,7 +269,11 @@ mod tests {
 
     #[tokio::test]
     async fn test_get_bare() {
-        let api = RestApiBuilder::wikipedia("en").build();
+        let api = get_mock_api(
+            "page_get_bare.json",
+            "/page/Rust (programming language)/bare",
+        )
+        .await;
         let page = Page::new("Rust (programming language)");
         let (page_info, html_url) = page
             .get_bare(&api, false)
@@ -263,7 +288,20 @@ mod tests {
 
     #[tokio::test]
     async fn test_get_html() {
-        let api = RestApiBuilder::wikipedia("en").build();
+        let v: String =
+            std::fs::read_to_string("test_data/page_get_html.html").expect("Test file missing");
+        let test_path = "/page/Rust (programming language)/html";
+        let mock_path = format!("w/rest.php/v1{}", test_path.replace(' ', "%20"));
+        let mock_server = MockServer::start().await;
+        Mock::given(method("GET"))
+            .and(path(&mock_path))
+            .respond_with(ResponseTemplate::new(200).set_body_string(&v))
+            .mount(&mock_server)
+            .await;
+        let api = RestApi::builder(&(mock_server.uri() + "/w/rest.php"))
+            .expect("Failed to create RestApi")
+            .build();
+
         let page = Page::new("Rust (programming language)");
         let result = page
             .get_html(&api, false, false, HtmlFlavor::View)
@@ -274,7 +312,11 @@ mod tests {
 
     #[tokio::test]
     async fn test_get_with_html() {
-        let api = RestApiBuilder::wikipedia("en").build();
+        let api = get_mock_api(
+            "page_get_with_html.json",
+            "/page/Rust (programming language)/with_html",
+        )
+        .await;
         let page = Page::new("Rust (programming language)");
         let (page_info, html) = page
             .get_with_html(&api, false, false, HtmlFlavor::View)
@@ -286,7 +328,11 @@ mod tests {
 
     #[tokio::test]
     async fn test_get_links_language() {
-        let api = RestApiBuilder::wikipedia("en").build();
+        let api = get_mock_api(
+            "page_links_language.json",
+            "/page/Rust (programming language)/links/language",
+        )
+        .await;
         let page = Page::new("Rust (programming language)");
         let language_links = page
             .get_links_language(&api)
@@ -301,7 +347,7 @@ mod tests {
 
     #[tokio::test]
     async fn test_get_links_media() {
-        let api = RestApiBuilder::wikipedia("en").build();
+        let api = get_mock_api("page_links_media.json", "/page/Cambridge/links/media").await;
         let page = Page::new("Cambridge");
         let media_links = page
             .get_links_media(&api)
@@ -317,21 +363,7 @@ mod tests {
 
     #[tokio::test]
     async fn test_get_lint() {
-        let v: String =
-            std::fs::read_to_string("test_data/page_lint.json").expect("Test file missing");
-        let v: Value = serde_json::from_str(&v).expect("Failed to parse JSON");
-
-        let mock_path = "w/rest.php/v1/page/Cambridge/lint";
-        let mock_server = MockServer::start().await;
-        Mock::given(method("GET"))
-            .and(path(mock_path))
-            .respond_with(ResponseTemplate::new(200).set_body_json(&v))
-            .mount(&mock_server)
-            .await;
-        let api = RestApi::builder(&(mock_server.uri() + "/w/rest.php"))
-            .expect("Failed to create RestApi")
-            .build();
-
+        let api = get_mock_api("page_lint.json", "/page/Cambridge/lint").await;
         let page = Page::new("Cambridge");
         let lints = page
             .get_lint(&api, false)
@@ -344,20 +376,11 @@ mod tests {
 
     #[tokio::test]
     async fn test_get_history() {
-        let v: String =
-            std::fs::read_to_string("test_data/page_history.json").expect("Test file missing");
-        let v: Value = serde_json::from_str(&v).expect("Failed to parse JSON");
-
-        let mock_path = "w/rest.php/v1/page/Rust%20(programming%20language)/history";
-        let mock_server = MockServer::start().await;
-        Mock::given(method("GET"))
-            .and(path(mock_path))
-            .respond_with(ResponseTemplate::new(200).set_body_json(&v))
-            .mount(&mock_server)
-            .await;
-        let api = RestApi::builder(&(mock_server.uri() + "/w/rest.php"))
-            .expect("Failed to create RestApi")
-            .build();
+        let api = get_mock_api(
+            "page_history.json",
+            "/page/Rust (programming language)/history",
+        )
+        .await;
         let page = Page::new("Rust (programming language)");
         let history = page
             .get_history(&api, None, None, None)
@@ -368,21 +391,11 @@ mod tests {
 
     #[tokio::test]
     async fn test_get_history_counts() {
-        let v: String = std::fs::read_to_string("test_data/page_history_counts.json")
-            .expect("Test file missing");
-        let v: Value = serde_json::from_str(&v).expect("Failed to parse JSON");
-
-        let mock_path = "w/rest.php/v1/page/Cambridge/history/counts/anonymous";
-        let mock_server = MockServer::start().await;
-        Mock::given(method("GET"))
-            .and(path(mock_path))
-            .respond_with(ResponseTemplate::new(200).set_body_json(&v))
-            .mount(&mock_server)
-            .await;
-        let api = RestApi::builder(&(mock_server.uri() + "/w/rest.php"))
-            .expect("Failed to create RestApi")
-            .build();
-
+        let api = get_mock_api(
+            "page_history_counts.json",
+            "/page/Cambridge/history/counts/anonymous",
+        )
+        .await;
         let page = Page::new("Cambridge");
         let hc = page
             .get_history_counts(&api, HistoryFilterExtended::Anonymous, None, None)

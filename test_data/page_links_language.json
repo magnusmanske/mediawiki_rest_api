@@ -1,0 +1,314 @@
+[
+	{
+		"code": "af",
+		"name": "Afrikaans",
+		"key": "Rust_(programmeertaal)",
+		"title": "Rust (programmeertaal)"
+	},
+	{
+		"code": "ar",
+		"name": "العربية",
+		"key": "رست_(لغة_برمجة)",
+		"title": "رست (لغة برمجة)"
+	},
+	{
+		"code": "az",
+		"name": "azərbaycanca",
+		"key": "Rust_(proqramlaşdırma_dili)",
+		"title": "Rust (proqramlaşdırma dili)"
+	},
+	{
+		"code": "be",
+		"name": "беларуская",
+		"key": "Rust",
+		"title": "Rust"
+	},
+	{
+		"code": "bn",
+		"name": "বাংলা",
+		"key": "রাস্ট_(প্রোগ্রামিং_ভাষা)",
+		"title": "রাস্ট (প্রোগ্রামিং ভাষা)"
+	},
+	{
+		"code": "ca",
+		"name": "català",
+		"key": "Rust_(llenguatge_de_programació)",
+		"title": "Rust (llenguatge de programació)"
+	},
+	{
+		"code": "cs",
+		"name": "čeština",
+		"key": "Rust_(programovací_jazyk)",
+		"title": "Rust (programovací jazyk)"
+	},
+	{
+		"code": "da",
+		"name": "dansk",
+		"key": "Rust_(programmeringssprog)",
+		"title": "Rust (programmeringssprog)"
+	},
+	{
+		"code": "de",
+		"name": "Deutsch",
+		"key": "Rust_(Programmiersprache)",
+		"title": "Rust (Programmiersprache)"
+	},
+	{
+		"code": "dtp",
+		"name": "Kadazandusun",
+		"key": "Rust_(boros_tokud)",
+		"title": "Rust (boros tokud)"
+	},
+	{
+		"code": "eo",
+		"name": "Esperanto",
+		"key": "Rust_(programlingvo)",
+		"title": "Rust (programlingvo)"
+	},
+	{
+		"code": "es",
+		"name": "español",
+		"key": "Rust_(lenguaje_de_programación)",
+		"title": "Rust (lenguaje de programación)"
+	},
+	{
+		"code": "et",
+		"name": "eesti",
+		"key": "Rust",
+		"title": "Rust"
+	},
+	{
+		"code": "eu",
+		"name": "euskara",
+		"key": "Rust_(programazio-lengoaia)",
+		"title": "Rust (programazio-lengoaia)"
+	},
+	{
+		"code": "fa",
+		"name": "فارسی",
+		"key": "راست_(زبان_برنامه‌نویسی)",
+		"title": "راست (زبان برنامه‌نویسی)"
+	},
+	{
+		"code": "fi",
+		"name": "suomi",
+		"key": "Rust_(ohjelmointikieli)",
+		"title": "Rust (ohjelmointikieli)"
+	},
+	{
+		"code": "fr",
+		"name": "français",
+		"key": "Rust_(langage)",
+		"title": "Rust (langage)"
+	},
+	{
+		"code": "ga",
+		"name": "Gaeilge",
+		"key": "Rust_(teanga_ríomhchlárúcháin)",
+		"title": "Rust (teanga ríomhchlárúcháin)"
+	},
+	{
+		"code": "gl",
+		"name": "galego",
+		"key": "Rust_(linguaxe_de_programación)",
+		"title": "Rust (linguaxe de programación)"
+	},
+	{
+		"code": "he",
+		"name": "עברית",
+		"key": "ראסט_(שפת_תכנות)",
+		"title": "ראסט (שפת תכנות)"
+	},
+	{
+		"code": "hr",
+		"name": "hrvatski",
+		"key": "Rust_(programski_jezik)",
+		"title": "Rust (programski jezik)"
+	},
+	{
+		"code": "hu",
+		"name": "magyar",
+		"key": "Rust_(programozási_nyelv)",
+		"title": "Rust (programozási nyelv)"
+	},
+	{
+		"code": "id",
+		"name": "Bahasa Indonesia",
+		"key": "Rust_(bahasa_pemrograman)",
+		"title": "Rust (bahasa pemrograman)"
+	},
+	{
+		"code": "is",
+		"name": "íslenska",
+		"key": "Rust_(forritunarmál)",
+		"title": "Rust (forritunarmál)"
+	},
+	{
+		"code": "it",
+		"name": "italiano",
+		"key": "Rust_(linguaggio_di_programmazione)",
+		"title": "Rust (linguaggio di programmazione)"
+	},
+	{
+		"code": "ja",
+		"name": "日本語",
+		"key": "Rust_(プログラミング言語)",
+		"title": "Rust (プログラミング言語)"
+	},
+	{
+		"code": "ko",
+		"name": "한국어",
+		"key": "러스트_(프로그래밍_언어)",
+		"title": "러스트 (프로그래밍 언어)"
+	},
+	{
+		"code": "lmo",
+		"name": "lombard",
+		"key": "Rust_(lenguagg_de_programazzion)",
+		"title": "Rust (lenguagg de programazzion)"
+	},
+	{
+		"code": "lv",
+		"name": "latviešu",
+		"key": "Rust",
+		"title": "Rust"
+	},
+	{
+		"code": "ml",
+		"name": "മലയാളം",
+		"key": "റസ്റ്റ്_(പ്രോഗ്രാമിംഗ്_ഭാഷ)",
+		"title": "റസ്റ്റ് (പ്രോഗ്രാമിംഗ് ഭാഷ)"
+	},
+	{
+		"code": "ms",
+		"name": "Bahasa Melayu",
+		"key": "Rust_(bahasa_pengaturcaraan)",
+		"title": "Rust (bahasa pengaturcaraan)"
+	},
+	{
+		"code": "nl",
+		"name": "Nederlands",
+		"key": "Rust_(programmeertaal)",
+		"title": "Rust (programmeertaal)"
+	},
+	{
+		"code": "no",
+		"name": "norsk",
+		"key": "Rust_(programmeringsspråk)",
+		"title": "Rust (programmeringsspråk)"
+	},
+	{
+		"code": "pl",
+		"name": "polski",
+		"key": "Rust_(język_programowania)",
+		"title": "Rust (język programowania)"
+	},
+	{
+		"code": "pt",
+		"name": "português",
+		"key": "Rust_(linguagem_de_programação)",
+		"title": "Rust (linguagem de programação)"
+	},
+	{
+		"code": "qu",
+		"name": "Runa Simi",
+		"key": "Rust",
+		"title": "Rust"
+	},
+	{
+		"code": "ro",
+		"name": "română",
+		"key": "Rust_(limbaj_de_programare)",
+		"title": "Rust (limbaj de programare)"
+	},
+	{
+		"code": "ru",
+		"name": "русский",
+		"key": "Rust_(язык_программирования)",
+		"title": "Rust (язык программирования)"
+	},
+	{
+		"code": "simple",
+		"name": "Simple English",
+		"key": "Rust_(programming_language)",
+		"title": "Rust (programming language)"
+	},
+	{
+		"code": "sk",
+		"name": "slovenčina",
+		"key": "Rust_(programovací_jazyk)",
+		"title": "Rust (programovací jazyk)"
+	},
+	{
+		"code": "sq",
+		"name": "shqip",
+		"key": "Rust_(gjuhë_programimi)",
+		"title": "Rust (gjuhë programimi)"
+	},
+	{
+		"code": "sr",
+		"name": "српски / srpski",
+		"key": "Rust_(програмски_језик)",
+		"title": "Rust (програмски језик)"
+	},
+	{
+		"code": "sv",
+		"name": "svenska",
+		"key": "Rust_(programspråk)",
+		"title": "Rust (programspråk)"
+	},
+	{
+		"code": "sw",
+		"name": "Kiswahili",
+		"key": "Rust_(lugha_ya_kompyuta)",
+		"title": "Rust (lugha ya kompyuta)"
+	},
+	{
+		"code": "te",
+		"name": "తెలుగు",
+		"key": "రస్ట్_(ప్రోగ్రామింగ్_భాష)",
+		"title": "రస్ట్ (ప్రోగ్రామింగ్ భాష)"
+	},
+	{
+		"code": "th",
+		"name": "ไทย",
+		"key": "ภาษารัสต์",
+		"title": "ภาษารัสต์"
+	},
+	{
+		"code": "tr",
+		"name": "Türkçe",
+		"key": "Rust_(programlama_dili)",
+		"title": "Rust (programlama dili)"
+	},
+	{
+		"code": "uk",
+		"name": "українська",
+		"key": "Rust_(мова_програмування)",
+		"title": "Rust (мова програмування)"
+	},
+	{
+		"code": "vi",
+		"name": "Tiếng Việt",
+		"key": "Rust_(ngôn_ngữ_lập_trình)",
+		"title": "Rust (ngôn ngữ lập trình)"
+	},
+	{
+		"code": "zh",
+		"name": "中文",
+		"key": "Rust_(编程语言)",
+		"title": "Rust (编程语言)"
+	},
+	{
+		"code": "zh-min-nan",
+		"name": "閩南語 / Bân-lâm-gí",
+		"key": "Rust_(pian-têng_gú-giân)",
+		"title": "Rust (pian-têng gú-giân)"
+	},
+	{
+		"code": "zh-yue",
+		"name": "粵語",
+		"key": "Rust",
+		"title": "Rust"
+	}
+]
