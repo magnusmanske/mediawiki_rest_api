@@ -1,4 +1,8 @@
-use crate::{error::RestApiError, prelude::RestApi};
+use std::sync::Arc;
+
+use tokio::sync::RwLock;
+
+use crate::{bearer_token::BearerToken, error::RestApiError, prelude::RestApi};
 
 /// The default user agent
 const DEFAULT_USER_AGENT: &str = "Rust MediaWiki REST API client";
@@ -9,11 +13,11 @@ const WIKIBASE_REST_API_VERSION: u8 = 1;
 #[derive(Debug)]
 pub struct RestApiBuilder {
     client: Option<reqwest::Client>,
-    // token: BearerToken,
+    token: BearerToken,
     user_agent: Option<String>,
     api_url: String,
     api_version: Option<u8>,
-    // renewal_interval: Option<std::time::Duration>,
+    renewal_interval: Option<std::time::Duration>,
 }
 
 // Public functions
@@ -92,18 +96,45 @@ impl RestApiBuilder {
     /// Returns a `RestApi` instance.
     pub fn build(self) -> RestApi {
         let api_url = self.api_url;
-        // let mut token = self.token;
-        // if let Some(interval) = self.renewal_interval {
-        //     token.set_renewal_interval(interval.as_secs());
-        // }
-        // let token = Arc::new(RwLock::new(token));
+        let mut token = self.token;
+        if let Some(interval) = self.renewal_interval {
+            token.set_renewal_interval(interval.as_secs());
+        }
+        let token = Arc::new(RwLock::new(token));
         let user_agent = self.user_agent.unwrap_or(Self::default_user_agent());
         let api_version = self.api_version.unwrap_or(WIKIBASE_REST_API_VERSION);
         let client = self.client.unwrap_or_default();
-        RestApi::new(client, user_agent, api_url, api_version)
+        RestApi::new(client, user_agent, api_url, api_version, token)
     }
 
-    /// Sets the API version (u8). Default is 1.
+    /// Sets the `OAuth2` bearer token.
+    pub fn with_access_token<S: Into<String>>(mut self, access_token: S) -> Self {
+        self.token.set_access_token(access_token);
+        self
+    }
+
+    /// Sets the `OAuth2` client ID and client secret
+    #[cfg(not(tarpaulin_include))]
+    pub fn with_oauth2_info<S1: Into<String>, S2: Into<String>>(
+        mut self,
+        client_id: S1,
+        client_secret: S2,
+    ) -> Self {
+        self.token.set_oauth2_info(client_id, client_secret);
+        self
+    }
+
+    /// Sets the interval for bearer token renewal. By default, the interval is `DEFAULT_RENEWAL_INTERVAL_SEC`.
+    #[cfg(not(tarpaulin_include))]
+    pub const fn with_access_token_renewal(
+        mut self,
+        renewal_interval: std::time::Duration,
+    ) -> Self {
+        self.renewal_interval = Some(renewal_interval);
+        self
+    }
+
+    /// Sets the API version (u8). Default is `WIKIBASE_REST_API_VERSION`.
     pub const fn with_api_version(mut self, api_version: u8) -> Self {
         self.api_version = Some(api_version);
         self
@@ -146,11 +177,11 @@ impl RestApiBuilder {
     fn new_from_validated<S: Into<String>>(api_url: S) -> Self {
         Self {
             client: None,
-            // token: BearerToken::default(),
+            token: BearerToken::default(),
             user_agent: None,
             api_url: api_url.into(),
             api_version: None,
-            // renewal_interval: None,
+            renewal_interval: None,
         }
     }
 }

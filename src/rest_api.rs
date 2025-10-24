@@ -1,6 +1,7 @@
-use crate::{error::RestApiError, rest_api_builder::RestApiBuilder};
+use crate::{bearer_token::BearerToken, error::RestApiError, rest_api_builder::RestApiBuilder};
 use reqwest::header::HeaderMap;
-use std::collections::HashMap;
+use std::{collections::HashMap, sync::Arc};
+use tokio::sync::RwLock;
 
 #[derive(Debug, Clone)]
 pub struct RestApi {
@@ -8,7 +9,7 @@ pub struct RestApi {
     user_agent: String,
     api_url: String, // eg https://en.wikipedia.org/w/rest.php
     api_version: u8,
-    // pub token: Arc<RwLock<BearerToken>>,
+    pub token: Arc<RwLock<BearerToken>>,
 }
 
 // Public functions
@@ -48,14 +49,14 @@ impl RestApi {
         user_agent: String,
         api_url: String,
         api_version: u8,
-        // token: Arc<RwLock<BearerToken>>,
+        token: Arc<RwLock<BearerToken>>,
     ) -> Self {
         Self {
             client,
             user_agent,
             api_url,
             api_version,
-            // token,
+            token,
         }
     }
 
@@ -122,6 +123,23 @@ impl RestApi {
         //         format!("Bearer {access_token}").parse()?,
         //     );
         // }
+        Ok(headers)
+    }
+
+    /// Returns a `HeaderMap` with the user agent and `OAuth2` bearer token (if present).
+    /// Only available internally.
+    pub(crate) async fn headers_from_token(
+        &self,
+        token: &BearerToken,
+    ) -> Result<HeaderMap, RestApiError> {
+        let mut headers = HeaderMap::new();
+        headers.insert(reqwest::header::USER_AGENT, self.user_agent.parse()?);
+        if let Some(access_token) = &token.get() {
+            headers.insert(
+                reqwest::header::AUTHORIZATION,
+                format!("Bearer {access_token}").parse()?,
+            );
+        }
         Ok(headers)
     }
 

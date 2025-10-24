@@ -1,4 +1,5 @@
 #![forbid(unsafe_code)]
+#![allow(clippy::unwrap_used)] // TODO FIXME
 #![warn(
     clippy::cognitive_complexity,
     clippy::dbg_macro,
@@ -43,6 +44,7 @@
 //! for [MediaWiki](https://www.mediawiki.org) instances.
 //! It provides a set of types and methods for interacting with [the API](https://www.mediawiki.org/wiki/API:REST_API).
 
+pub mod bearer_token;
 pub mod error;
 pub mod file;
 pub mod math;

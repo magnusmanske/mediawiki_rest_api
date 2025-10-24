@@ -5,6 +5,7 @@ use std::collections::HashMap;
 pub struct Math;
 
 impl Math {
+    /// Retrieves the HTML popup information from Wikidata for a given QID.
     pub async fn popup_html(qid: usize, api: &RestApi) -> Result<PopupInfo, RestApiError> {
         let path = format!("/math/v0/popup/html/{qid}");
         let params = HashMap::new();
