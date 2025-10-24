@@ -4,7 +4,7 @@
     clippy::dbg_macro,
     clippy::debug_assert_with_mut_call,
     clippy::doc_link_with_quotes,
-    // clippy::doc_markdown,
+    clippy::doc_markdown,
     clippy::empty_line_after_outer_attr,
     clippy::empty_structs_with_brackets,
     clippy::float_cmp,
@@ -38,6 +38,11 @@
     clippy::wildcard_imports
 )]
 
+//! **``MediaWiki`` REST API** is a Rust library for interacting with the
+//! [MediaWiki REST API](https://en.wikipedia.org/wiki/Special:RestSandbox)
+//! for [MediaWiki](https://www.mediawiki.org) instances.
+//! It provides a set of types and methods for interacting with the API.
+
 pub mod error;
 pub mod file;
 pub mod page;
@@ -48,5 +53,3 @@ pub mod revision;
 pub mod search;
 pub mod transform;
 pub mod utilities;
-
-// See https://en.wikipedia.org/wiki/Special:RestSandbox

@@ -121,7 +121,7 @@ impl RestApi {
     // ____________________________________________________________________________________________________
     // Private functions
 
-    /// Returns the root path for the MediaWiki REST API, based on the version number
+    /// Returns the root path for the `MediaWiki` REST API, based on the version number
     fn mediawiki_root(&self) -> String {
         format!("/v{}", self.api_version)
     }
