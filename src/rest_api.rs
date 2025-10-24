@@ -104,26 +104,9 @@ impl RestApi {
         &self,
         request: reqwest::Request,
     ) -> Result<reqwest::Response, RestApiError> {
-        // self.token.write().await.check(self, &request).await?;
+        self.token.write().await.check(self, &request).await?;
         let response = self.client.execute(request).await?;
         Ok(response)
-    }
-
-    /// Returns a `HeaderMap`.
-    /// Only available internally.
-    pub(crate) async fn headers(
-        &self,
-        // token: &BearerToken,
-    ) -> Result<HeaderMap, RestApiError> {
-        let mut headers = HeaderMap::new();
-        headers.insert(reqwest::header::USER_AGENT, self.user_agent.parse()?);
-        // if let Some(access_token) = &token.get() {
-        //     headers.insert(
-        //         reqwest::header::AUTHORIZATION,
-        //         format!("Bearer {access_token}").parse()?,
-        //     );
-        // }
-        Ok(headers)
     }
 
     /// Returns a `HeaderMap` with the user agent and `OAuth2` bearer token (if present).
@@ -145,6 +128,12 @@ impl RestApi {
 
     // ____________________________________________________________________________________________________
     // Private functions
+
+    /// Returns a `HeaderMap` with the user agent and `OAuth2` bearer token (if present)
+    async fn headers(&self) -> Result<HeaderMap, RestApiError> {
+        let token = self.token.read().await;
+        self.headers_from_token(&token).await
+    }
 
     /// Returns the root path for the `MediaWiki` REST API, based on the version number
     fn mediawiki_root(&self) -> String {
