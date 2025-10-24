@@ -85,7 +85,14 @@ impl RestApi {
                 );
             }
         }
-        let wikibase_path = format!("{}{}", self.mediawiki_root(), path.into());
+        let path: String = path.into();
+        let wikibase_path = if path.contains("/v0/") {
+            // Use verbatim path for odd, old, non-standard paths
+            path
+        } else {
+            // Use auto-prefixed path
+            format!("{}{}", self.mediawiki_root(), path)
+        };
         self.request_builder(&wikibase_path, headers, params, method)
     }
 

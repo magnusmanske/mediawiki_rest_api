@@ -1,30 +1,19 @@
 use crate::prelude::*;
 use std::collections::HashMap;
 
-#[derive(Clone, Debug)]
-pub struct File {
-    title: String,
-}
+#[derive(Clone, Copy, Debug)]
+pub struct Math;
 
-impl File {
-    /// Creates a new file object with the given title.
-    /// Note: the title is expected to be without the "File:" prefix.
-    pub fn new<S: Into<String>>(title: S) -> Self {
-        Self {
-            title: title.into(),
-        }
-    }
-
-    /// Retrieves file information.
-    pub async fn get(&self, api: &RestApi) -> Result<FileInfo, RestApiError> {
-        let path = format!("/file/{}", self.title);
+impl Math {
+    pub async fn popup_html(qid: usize, api: &RestApi) -> Result<PopupInfo, RestApiError> {
+        let path = format!("/math/v0/popup/html/{qid}");
         let params = HashMap::new();
         let request = api
             .mediawiki_request_builder(path, params, reqwest::Method::GET)
             .await?
             .build()?;
         let response = api.execute(request).await?;
-        let ret: FileInfo = response.json().await?;
+        let ret: PopupInfo = response.json().await?;
         Ok(ret)
     }
 }
@@ -37,7 +26,7 @@ mod tests {
     use wiremock::{Mock, MockServer, ResponseTemplate};
 
     async fn get_mock_api(test_file: &str, test_path: &str) -> (RestApi, MockServer) {
-        let mock_path = format!("w/rest.php/v1{}", test_path.replace(' ', "%20"));
+        let mock_path = format!("w/rest.php/{}", test_path.replace(' ', "%20"));
         let mock_server = MockServer::start().await;
 
         let test_text: String =
@@ -64,14 +53,13 @@ mod tests {
     }
 
     #[tokio::test]
-    async fn test_get() {
-        let (api, _mock_server) = get_mock_api("file_get.json", "/file/Commons-logo.svg").await;
-        let page = File::new("Commons-logo.svg");
-        let file_info = page.get(&api).await.expect("Failed to get page content");
-        assert_eq!(
-            file_info.file_description_url,
-            "//en.wikipedia.org/wiki/File:Commons-logo.svg"
-        );
+    async fn test_popup_html() {
+        let (api, _mock_server) =
+            get_mock_api("math_popup_html.json", "math/v0/popup/html/12345").await;
+        // let api = crate::rest_api_builder::RestApiBuilder::wikipedia("en").build();
+        let popup = Math::popup_html(12345, &api)
+            .await
+            .expect("Failed to get page content");
+        assert_eq!(popup.title, "Count von Count");
     }
 }
-// Commons-logo.svg

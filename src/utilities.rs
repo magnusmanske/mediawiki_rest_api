@@ -246,3 +246,14 @@ pub struct SearchResult {
 pub struct SearchResults {
     pub pages: Vec<SearchResult>,
 }
+
+#[derive(Clone, Debug, Deserialize)]
+pub struct PopupInfo {
+    pub title: String,
+    pub contentmodel: String,
+    pub pagelanguage: String,
+    pub pagelanguagehtmlcode: String,
+    pub extract: String,
+    pub canonicalurl: String,
+    pub fullurl: String,
+}

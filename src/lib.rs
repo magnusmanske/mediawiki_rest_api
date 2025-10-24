@@ -41,10 +41,11 @@
 //! **``MediaWiki`` REST API** is a Rust library for interacting with the
 //! [MediaWiki REST API](https://en.wikipedia.org/wiki/Special:RestSandbox)
 //! for [MediaWiki](https://www.mediawiki.org) instances.
-//! It provides a set of types and methods for interacting with the API.
+//! It provides a set of types and methods for interacting with [the API](https://www.mediawiki.org/wiki/API:REST_API).
 
 pub mod error;
 pub mod file;
+pub mod math;
 pub mod page;
 pub mod prelude;
 pub mod rest_api;

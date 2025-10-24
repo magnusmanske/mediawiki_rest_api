@@ -1,0 +1,10 @@
+{
+	"title": "Count von Count",
+	"contentmodel": "html",
+	"pagelanguagedir": "ltr",
+	"pagelanguage": "en-gb,en;q=0.7,de;q=0.3",
+	"pagelanguagehtmlcode": "en-gb,en;q=0.7,de;q=0.3",
+	"extract": "<div style=\"width: 100%; display: flex; flex-direction: column;&#10;&#9;&#9;&#9;&#9;&#9;align-items: flex-start; flex-wrap: wrap;\"><span style=\"font-weight: bold; text-transform: capitalize;\">Count von Count</span><span style=\"font-size: small\"> (character on Sesame Street)</span></div>",
+	"canonicalurl": "/w/index.php?title=Special:MathWikibase&qid=Q12345",
+	"fullurl": "//en.wikipedia.org/w/index.php?title=Special:MathWikibase&qid=Q12345"
+}
