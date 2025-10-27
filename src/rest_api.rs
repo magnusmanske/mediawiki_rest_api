@@ -19,6 +19,10 @@ impl RestApi {
         RestApiBuilder::new(api_url)
     }
 
+    pub async fn get_edit_token(&self) -> Option<String> {
+        self.token.read().await.get().to_owned()
+    }
+
     /// Returns the user agent
     pub fn user_agent(&self) -> &str {
         &self.user_agent
@@ -63,7 +67,7 @@ impl RestApi {
     /// Returns a `RequestBuilder` for a Wikibase REST API request
     /// # Errors
     /// Returns an error if the headers cannot be created
-    pub(crate) async fn mediawiki_request_builder<S: Into<String>>(
+    pub(crate) async fn build_request<S: Into<String>>(
         &self,
         path: S,
         params: HashMap<String, String>,

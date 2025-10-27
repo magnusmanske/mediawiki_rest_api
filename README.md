@@ -18,6 +18,16 @@ let page = Page::new("Rust (programming language)");
 // ...retrieve basic information and wikitext
 let (page_info,wikitext) = page.get(&api, false).await.unwrap();
 
+// Edit an existing page
+let token = "my_oauth_token";
+let api = RestApiBuilder::wikipedia("en")
+    .with_access_token(token)
+    .build();
+let (page_info,_) = page.get(&api, false).await.unwrap();
+page.edit(&api, &page_info.latest, "new page wikitext", "a comment")
+    .await
+    .expect("Failed to edit page");
+
 // Convert some wikitext to Parsoid HTML.
 let html = Transform::wikitext2html("[[Foo|bar]]", &api).await.unwrap();
 ```

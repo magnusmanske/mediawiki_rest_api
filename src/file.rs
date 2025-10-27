@@ -1,5 +1,6 @@
 use crate::prelude::*;
 use std::collections::HashMap;
+use urlencoding::encode;
 
 #[derive(Clone, Debug)]
 pub struct File {
@@ -17,10 +18,10 @@ impl File {
 
     /// Retrieves file information.
     pub async fn get(&self, api: &RestApi) -> Result<FileInfo, RestApiError> {
-        let path = format!("/file/{}", self.title);
+        let path = format!("/file/{}", encode(&self.title));
         let params = HashMap::new();
         let request = api
-            .mediawiki_request_builder(path, params, reqwest::Method::GET)
+            .build_request(path, params, reqwest::Method::GET)
             .await?
             .build()?;
         let response = api.execute(request).await?;

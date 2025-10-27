@@ -10,7 +10,7 @@ impl Math {
         let path = format!("/math/v0/popup/html/{qid}");
         let params = HashMap::new();
         let request = api
-            .mediawiki_request_builder(path, params, reqwest::Method::GET)
+            .build_request(path, params, reqwest::Method::GET)
             .await?
             .build()?;
         let response = api.execute(request).await?;

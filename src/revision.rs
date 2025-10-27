@@ -24,7 +24,7 @@ impl Revision {
         let path = format!("/revision/{}", self.id);
         let params = HashMap::new();
         let request = api
-            .mediawiki_request_builder(path, params, reqwest::Method::GET)
+            .build_request(path, params, reqwest::Method::GET)
             .await?
             .build()?;
         let response = api.execute(request).await?;
@@ -42,7 +42,7 @@ impl Revision {
         let path = format!("/revision/{}/bare", self.id);
         let params = HashMap::new();
         let request = api
-            .mediawiki_request_builder(path, params, reqwest::Method::GET)
+            .build_request(path, params, reqwest::Method::GET)
             .await?
             .build()?;
         let response = api.execute(request).await?;
@@ -67,7 +67,7 @@ impl Revision {
         params.insert("stash".to_string(), stash.to_string());
         params.insert("flavor".to_string(), flavor.to_string());
         let request = api
-            .mediawiki_request_builder(path, params, reqwest::Method::GET)
+            .build_request(path, params, reqwest::Method::GET)
             .await?
             .build()?;
         let response = api.execute(request).await?;
@@ -87,7 +87,7 @@ impl Revision {
         params.insert("stash".to_string(), stash.to_string());
         params.insert("flavor".to_string(), flavor.to_string());
         let request = api
-            .mediawiki_request_builder(path, params, reqwest::Method::GET)
+            .build_request(path, params, reqwest::Method::GET)
             .await?
             .build()?;
         let response = api.execute(request).await?;
@@ -105,7 +105,7 @@ impl Revision {
         let path = format!("/revision/{}/lint", self.id);
         let params = HashMap::new();
         let request = api
-            .mediawiki_request_builder(path, params, reqwest::Method::GET)
+            .build_request(path, params, reqwest::Method::GET)
             .await?
             .build()?;
         let response = api.execute(request).await?;
@@ -117,7 +117,7 @@ impl Revision {
         let path = format!("/revision/{}/compare/{to}", self.id);
         let params = HashMap::new();
         let request = api
-            .mediawiki_request_builder(path, params, reqwest::Method::GET)
+            .build_request(path, params, reqwest::Method::GET)
             .await?
             .build()?;
         let response = api.execute(request).await?;

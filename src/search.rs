@@ -24,7 +24,7 @@ impl Search {
             params.insert("limit".to_string(), limit.to_string());
         }
         let request = api
-            .mediawiki_request_builder(path, params, reqwest::Method::GET)
+            .build_request(path, params, reqwest::Method::GET)
             .await?
             .build()?;
         let response = api.execute(request).await?;
@@ -44,7 +44,7 @@ impl Search {
             params.insert("limit".to_string(), limit.to_string());
         }
         let request = api
-            .mediawiki_request_builder(path, params, reqwest::Method::GET)
+            .build_request(path, params, reqwest::Method::GET)
             .await?
             .build()?;
         let response = api.execute(request).await?;

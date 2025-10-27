@@ -19,7 +19,7 @@ impl Transform {
         })
         .to_string();
         let mut request = api
-            .mediawiki_request_builder(path, params, reqwest::Method::POST)
+            .build_request(path, params, reqwest::Method::POST)
             .await?
             .body(body)
             .build()?;
@@ -49,7 +49,7 @@ impl Transform {
         .to_string();
         let path = format!("/transform/wikitext/to/html/{}", encode(&title.into()));
         let mut request = api
-            .mediawiki_request_builder(path, params, reqwest::Method::POST)
+            .build_request(path, params, reqwest::Method::POST)
             .await?
             .body(body)
             .build()?;
@@ -77,7 +77,7 @@ impl Transform {
         })
         .to_string();
         let mut request = api
-            .mediawiki_request_builder(path, params, reqwest::Method::POST)
+            .build_request(path, params, reqwest::Method::POST)
             .await?
             .body(body)
             .build()?;
@@ -106,7 +106,7 @@ impl Transform {
         })
         .to_string();
         let mut request = api
-            .mediawiki_request_builder(path, params, reqwest::Method::POST)
+            .build_request(path, params, reqwest::Method::POST)
             .await?
             .body(body)
             .build()?;

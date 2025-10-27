@@ -1,6 +1,5 @@
 use core::fmt;
-
-use serde::Deserialize;
+use serde::{Deserialize, Serialize};
 use serde_json::Value;
 
 #[derive(Clone, Debug, Deserialize)]
@@ -9,7 +8,7 @@ pub struct LicenseModel {
     pub title: String,
 }
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct RevisionTimestamp {
     pub id: usize,
     pub timestamp: String,
@@ -90,7 +89,7 @@ pub struct Lint {
 }
 
 #[derive(Clone, Debug, Deserialize)]
-pub struct PageInfo {
+pub struct RevisionPageInfo {
     pub id: usize,
     pub key: String,
     pub title: String,
@@ -105,7 +104,7 @@ pub struct RevisionInfo {
     pub minor: bool,
     pub timestamp: String,
     pub content_model: String,
-    pub page: PageInfo,
+    pub page: RevisionPageInfo,
     pub license: LicenseModel,
     pub user: UserInfo,
 }

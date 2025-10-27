@@ -1,7 +1,8 @@
 use crate::{error::RestApiError, prelude::*};
 use serde::Deserialize;
-use serde_json::{Value, from_value};
+use serde_json::{Value, from_value, json};
 use std::collections::HashMap;
+use urlencoding::encode;
 
 #[derive(Clone, Debug, Deserialize)]
 pub struct PageInfo {
@@ -37,11 +38,11 @@ impl Page {
         api: &RestApi,
         follow_redirect: bool,
     ) -> Result<(PageInfo, String), RestApiError> {
-        let path = format!("/page/{}", self.title);
+        let path = format!("/page/{}", encode(&self.title));
         let mut params = HashMap::new();
         params.insert("redirect".to_string(), follow_redirect.to_string());
         let request = api
-            .mediawiki_request_builder(path, params, reqwest::Method::GET)
+            .build_request(path, params, reqwest::Method::GET)
             .await?
             .build()?;
         let response = api.execute(request).await?;
@@ -60,11 +61,11 @@ impl Page {
         api: &RestApi,
         follow_redirect: bool,
     ) -> Result<(PageInfo, String), RestApiError> {
-        let path = format!("/page/{}/bare", self.title);
+        let path = format!("/page/{}/bare", encode(&self.title));
         let mut params = HashMap::new();
         params.insert("redirect".to_string(), follow_redirect.to_string());
         let request = api
-            .mediawiki_request_builder(path, params, reqwest::Method::GET)
+            .build_request(path, params, reqwest::Method::GET)
             .await?
             .build()?;
         let response = api.execute(request).await?;
@@ -85,13 +86,13 @@ impl Page {
         stash: bool,
         flavor: HtmlFlavor,
     ) -> Result<String, RestApiError> {
-        let path = format!("/page/{}/html", self.title);
+        let path = format!("/page/{}/html", encode(&self.title));
         let mut params = HashMap::new();
         params.insert("redirect".to_string(), follow_redirect.to_string());
         params.insert("stash".to_string(), stash.to_string());
         params.insert("flavor".to_string(), flavor.to_string());
         let request = api
-            .mediawiki_request_builder(path, params, reqwest::Method::GET)
+            .build_request(path, params, reqwest::Method::GET)
             .await?
             .build()?;
         let response = api.execute(request).await?;
@@ -107,13 +108,13 @@ impl Page {
         stash: bool,
         flavor: HtmlFlavor,
     ) -> Result<(PageInfo, String), RestApiError> {
-        let path = format!("/page/{}/with_html", self.title);
+        let path = format!("/page/{}/with_html", encode(&self.title));
         let mut params = HashMap::new();
         params.insert("redirect".to_string(), follow_redirect.to_string());
         params.insert("stash".to_string(), stash.to_string());
         params.insert("flavor".to_string(), flavor.to_string());
         let request = api
-            .mediawiki_request_builder(path, params, reqwest::Method::GET)
+            .build_request(path, params, reqwest::Method::GET)
             .await?
             .build()?;
         let response = api.execute(request).await?;
@@ -131,10 +132,10 @@ impl Page {
         &self,
         api: &RestApi,
     ) -> Result<Vec<LanguageLink>, RestApiError> {
-        let path = format!("/page/{}/links/language", self.title);
+        let path = format!("/page/{}/links/language", encode(&self.title));
         let params = HashMap::new();
         let request = api
-            .mediawiki_request_builder(path, params, reqwest::Method::GET)
+            .build_request(path, params, reqwest::Method::GET)
             .await?
             .build()?;
         let response = api.execute(request).await?;
@@ -144,10 +145,10 @@ impl Page {
 
     /// Retrieves the used media.
     pub async fn get_links_media(&self, api: &RestApi) -> Result<MediaResult, RestApiError> {
-        let path = format!("/page/{}/links/media", self.title);
+        let path = format!("/page/{}/links/media", encode(&self.title));
         let params = HashMap::new();
         let request = api
-            .mediawiki_request_builder(path, params, reqwest::Method::GET)
+            .build_request(path, params, reqwest::Method::GET)
             .await?
             .build()?;
         let response = api.execute(request).await?;
@@ -161,11 +162,11 @@ impl Page {
         api: &RestApi,
         follow_redirect: bool,
     ) -> Result<Vec<Lint>, RestApiError> {
-        let path = format!("/page/{}/lint", self.title);
+        let path = format!("/page/{}/lint", encode(&self.title));
         let mut params = HashMap::new();
         params.insert("redirect".to_string(), follow_redirect.to_string());
         let request = api
-            .mediawiki_request_builder(path, params, reqwest::Method::GET)
+            .build_request(path, params, reqwest::Method::GET)
             .await?
             .build()?;
         let response = api.execute(request).await?;
@@ -181,7 +182,7 @@ impl Page {
         older_than: Option<usize>,
         newer_than: Option<usize>,
     ) -> Result<History, RestApiError> {
-        let path = format!("/page/{}/history", self.title);
+        let path = format!("/page/{}/history", encode(&self.title));
         let mut params = HashMap::new();
         if let Some(older_than) = older_than {
             params.insert("older_than".to_string(), older_than.to_string());
@@ -193,7 +194,7 @@ impl Page {
             params.insert("filter".to_string(), filter.to_string());
         }
         let request = api
-            .mediawiki_request_builder(path, params, reqwest::Method::GET)
+            .build_request(path, params, reqwest::Method::GET)
             .await?
             .build()?;
         let response = api.execute(request).await?;
@@ -209,7 +210,7 @@ impl Page {
         from: Option<usize>,
         to: Option<usize>,
     ) -> Result<HistoryCounts, RestApiError> {
-        let path = format!("/page/{}/history/counts/{filter}", self.title);
+        let path = format!("/page/{}/history/counts/{filter}", encode(&self.title));
         let mut params = HashMap::new();
         if let Some(from) = from {
             params.insert("from".to_string(), from.to_string());
@@ -218,12 +219,49 @@ impl Page {
             params.insert("to".to_string(), to.to_string());
         }
         let request = api
-            .mediawiki_request_builder(path, params, reqwest::Method::GET)
+            .build_request(path, params, reqwest::Method::GET)
             .await?
             .build()?;
         let response = api.execute(request).await?;
         let ret: HistoryCounts = response.json().await?;
         Ok(ret)
+    }
+
+    /// Retrieves history counts for the page.
+    pub async fn edit(
+        &self,
+        api: &RestApi,
+        rt: &RevisionTimestamp,
+        source: &str,
+        comment: &str,
+    ) -> Result<(PageInfo, String), RestApiError> {
+        let edit_token = api
+            .get_edit_token()
+            .await
+            .ok_or(RestApiError::AccessTokenRequired)?;
+        let path = format!("/page/{}", encode(&self.title));
+        let payload = json!({
+            "source": source,
+            "comment": comment,
+            "token": edit_token,
+            "latest": rt,
+            "content_model": "wikitext"
+        });
+        let payload = serde_json::to_string(&payload)?;
+        let params = HashMap::new();
+        let request = api
+            .build_request(path, params, reqwest::Method::PUT)
+            .await?
+            .body(payload)
+            .build()?;
+        let response = api.execute(request).await?;
+        let j: Value = response.json().await?;
+        let wikitext = j["source"]
+            .as_str()
+            .ok_or(RestApiError::MissingResults)?
+            .to_string();
+        let ret = from_value::<PageInfo>(j)?;
+        Ok((ret, wikitext))
     }
 }
 
@@ -256,6 +294,7 @@ mod tests {
 
         let api = RestApi::builder(&(mock_server.uri() + "/w/rest.php"))
             .expect("Failed to create RestApi")
+            .with_access_token("foobar")
             .build();
         (api, mock_server)
     }
@@ -400,5 +439,45 @@ mod tests {
             .await
             .expect("Failed to get page content");
         assert_eq!(hc.count, 1289);
+    }
+
+    #[tokio::test]
+    #[cfg_attr(miri, ignore)]
+    async fn test_edit_enwiki() {
+        let page_title = "User:Magnus Manske/mediawiki rest api test1";
+        let page = Page::new(page_title);
+
+        let mock_path = format!("w/rest.php/v1/page/{}", encode(page_title));
+        let mock_server = MockServer::start().await;
+
+        let test_text: String =
+            std::fs::read_to_string("test_data/page_edit.json").expect("Test file missing");
+        let json: Value = serde_json::from_str(&test_text).expect("Failed to parse JSON");
+        Mock::given(method("PUT"))
+            .and(path(&mock_path))
+            .respond_with(ResponseTemplate::new(200).set_body_json(&json))
+            .mount(&mock_server)
+            .await;
+
+        let api_url = mock_server.uri() + "/w/rest.php";
+        let api = RestApi::builder(&api_url)
+            .expect("Failed to create RestApi")
+            .with_access_token("foobar")
+            .build();
+
+        // Dummy
+        let latest = RevisionTimestamp {
+            id: 0,
+            timestamp: String::new(),
+        };
+
+        let source = "test123";
+        let comments = "test edit";
+        let (page_info, wikitext) = page
+            .edit(&api, &latest, source, comments)
+            .await
+            .expect("Failed to edit page");
+        //     assert_eq!(page_info.id, 81442549);
+        //     assert_eq!(wikitext, source);
     }
 }
