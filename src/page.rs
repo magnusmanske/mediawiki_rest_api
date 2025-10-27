@@ -272,7 +272,7 @@ mod tests {
     use wiremock::{Mock, MockServer, ResponseTemplate};
 
     async fn get_mock_api(test_file: &str, test_path: &str) -> (RestApi, MockServer) {
-        let mock_path = format!("w/rest.php/v1{}", test_path.replace(' ', "%20"));
+        let mock_path = format!("w/rest.php/v1{test_path}");
         let mock_server = MockServer::start().await;
 
         let test_text: String =
@@ -301,8 +301,11 @@ mod tests {
 
     #[tokio::test]
     async fn test_get() {
-        let (api, _mock_server) =
-            get_mock_api("page_get.json", "/page/Rust (programming language)").await;
+        let (api, _mock_server) = get_mock_api(
+            "page_get.json",
+            &format!("/page/{}", encode("Rust (programming language)")),
+        )
+        .await;
         let page = Page::new("Rust (programming language)");
         let (page_info, wikitext) = page
             .get(&api, false)
@@ -316,7 +319,7 @@ mod tests {
     async fn test_get_bare() {
         let (api, _mock_server) = get_mock_api(
             "page_get_bare.json",
-            "/page/Rust (programming language)/bare",
+            &format!("/page/{}/bare", encode("Rust (programming language)")),
         )
         .await;
         let page = Page::new("Rust (programming language)");
@@ -335,7 +338,7 @@ mod tests {
     async fn test_get_html() {
         let (api, _mock_server) = get_mock_api(
             "page_get_html.html",
-            "/page/Rust (programming language)/html",
+            &format!("/page/{}/html", encode("Rust (programming language)")),
         )
         .await;
         let page = Page::new("Rust (programming language)");
@@ -350,7 +353,7 @@ mod tests {
     async fn test_get_with_html() {
         let (api, _mock_server) = get_mock_api(
             "page_get_with_html.json",
-            "/page/Rust (programming language)/with_html",
+            &format!("/page/{}/with_html", encode("Rust (programming language)")),
         )
         .await;
         let page = Page::new("Rust (programming language)");
@@ -366,7 +369,10 @@ mod tests {
     async fn test_get_links_language() {
         let (api, _mock_server) = get_mock_api(
             "page_links_language.json",
-            "/page/Rust (programming language)/links/language",
+            &format!(
+                "/page/{}/links/language",
+                encode("Rust (programming language)")
+            ),
         )
         .await;
         let page = Page::new("Rust (programming language)");
@@ -415,7 +421,7 @@ mod tests {
     async fn test_get_history() {
         let (api, _mock_server) = get_mock_api(
             "page_history.json",
-            "/page/Rust (programming language)/history",
+            &format!("/page/{}/history", encode("Rust (programming language)")),
         )
         .await;
         let page = Page::new("Rust (programming language)");
@@ -477,7 +483,7 @@ mod tests {
             .edit(&api, &latest, source, comments)
             .await
             .expect("Failed to edit page");
-        //     assert_eq!(page_info.id, 81442549);
-        //     assert_eq!(wikitext, source);
+        assert_eq!(page_info.id, 81442549);
+        assert_eq!(wikitext, source);
     }
 }

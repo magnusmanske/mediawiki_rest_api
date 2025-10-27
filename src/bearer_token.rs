@@ -258,8 +258,6 @@ impl BearerToken {
 
 #[cfg(test)]
 mod tests {
-    use crate::rest_api_builder::RestApiBuilder;
-
     use super::*;
     use serde_json::json;
     use wiremock::matchers::{body_string_contains, method, path};
