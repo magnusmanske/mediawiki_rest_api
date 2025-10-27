@@ -211,7 +211,7 @@ impl Page {
         Ok(ret)
     }
 
-    /// Retrieves history counts for the page.
+    /// Replaces the contents of the page.
     pub async fn edit(
         &self,
         api: &RestApi,
@@ -235,6 +235,42 @@ impl Page {
         let params = HashMap::new();
         let request = api
             .build_request(path, params, reqwest::Method::PUT)
+            .await?
+            .body(payload)
+            .build()?;
+        let response = api.execute(request).await?;
+        let j: Value = response.json().await?;
+        let wikitext = j["source"]
+            .as_str()
+            .ok_or(RestApiError::MissingResults)?
+            .to_string();
+        let ret = from_value::<PageInfo>(j)?;
+        Ok((ret, wikitext))
+    }
+
+    /// Creates the page.
+    pub async fn create(
+        &self,
+        api: &RestApi,
+        source: &str,
+        comment: &str,
+    ) -> Result<(PageInfo, String), RestApiError> {
+        let edit_token = api
+            .get_edit_token()
+            .await
+            .ok_or(RestApiError::AccessTokenRequired)?;
+        let path = "/page";
+        let payload = json!({
+            "source": source,
+            "comment": comment,
+            "title": self.title,
+            "token": edit_token,
+            "content_model": "wikitext"
+        });
+        let payload = serde_json::to_string(&payload)?;
+        let params = HashMap::new();
+        let request = api
+            .build_request(path, params, reqwest::Method::POST)
             .await?
             .body(payload)
             .build()?;
@@ -468,6 +504,50 @@ mod tests {
             .await
             .expect("Failed to edit page");
         assert_eq!(page_info.id, 81442549);
+        assert_eq!(wikitext, source);
+    }
+
+    #[tokio::test]
+    #[cfg_attr(miri, ignore)]
+    async fn test_create_enwiki() {
+        let page_title = "User:Magnus Manske/mediawiki rest api test2";
+        let page = Page::new(page_title);
+
+        let mock_path = "w/rest.php/v1/page";
+        let mock_server = MockServer::start().await;
+
+        let test_text: String =
+            std::fs::read_to_string("test_data/page_create.json").expect("Test file missing");
+        let json: Value = serde_json::from_str(&test_text).expect("Failed to parse JSON");
+        Mock::given(method("POST"))
+            .and(path(mock_path))
+            .respond_with(ResponseTemplate::new(200).set_body_json(&json))
+            .mount(&mock_server)
+            .await;
+
+        let api_url = mock_server.uri() + "/w/rest.php";
+        let api = RestApi::builder(&api_url)
+            .expect("Failed to create RestApi")
+            .with_access_token("foobar")
+            .build();
+
+        // use std::fs::File;
+        // use std::io::BufReader;
+        // let file = File::open("access.json").unwrap();
+        // let reader = BufReader::new(file);
+        // let j: Value = serde_json::from_reader(reader).unwrap();
+        // let token = j["token"].as_str().unwrap().to_string();
+        // let api = crate::rest_api_builder::RestApiBuilder::wikipedia("en")
+        //     .with_access_token(token)
+        //     .build();
+
+        let source = "test123";
+        let comments = "test edit";
+        let (page_info, wikitext) = page
+            .create(&api, source, comments)
+            .await
+            .expect("Failed to edit page");
+        assert_eq!(page_info.id, 81447676);
         assert_eq!(wikitext, source);
     }
 }

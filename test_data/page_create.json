@@ -1,0 +1,15 @@
+{
+	"content_model": "wikitext",
+	"id": 81447676,
+	"key": "User:Magnus_Manske/mediawiki_rest_api_test2",
+	"latest": {
+		"id": 1319114107,
+		"timestamp": "2025-10-27T21:57:01Z"
+	},
+	"license": {
+		"title": "Creative Commons Attribution-Share Alike 4.0",
+		"url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en"
+	},
+	"source": "test123",
+	"title": "User:Magnus Manske/mediawiki rest api test2"
+}
