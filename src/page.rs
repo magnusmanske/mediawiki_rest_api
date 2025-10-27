@@ -1,23 +1,7 @@
 use crate::{error::RestApiError, prelude::*};
-use serde::Deserialize;
 use serde_json::{Value, from_value, json};
 use std::collections::HashMap;
 use urlencoding::encode;
-
-#[derive(Clone, Debug, Deserialize)]
-pub struct PageInfo {
-    pub id: usize,
-    pub key: String,
-    pub title: String,
-    pub latest: RevisionTimestamp,
-    pub content_model: String,
-    pub license: LicenseModel,
-}
-
-#[derive(Clone, Debug, Deserialize)]
-pub struct MediaResult {
-    pub files: Vec<FileInfo>,
-}
 
 #[derive(Clone, Debug)]
 pub struct Page {

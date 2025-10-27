@@ -256,3 +256,18 @@ pub struct PopupInfo {
     pub canonicalurl: String,
     pub fullurl: String,
 }
+
+#[derive(Clone, Debug, Deserialize)]
+pub struct PageInfo {
+    pub id: usize,
+    pub key: String,
+    pub title: String,
+    pub latest: RevisionTimestamp,
+    pub content_model: String,
+    pub license: LicenseModel,
+}
+
+#[derive(Clone, Debug, Deserialize)]
+pub struct MediaResult {
+    pub files: Vec<FileInfo>,
+}
