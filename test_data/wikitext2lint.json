@@ -1,0 +1,29 @@
+[
+	{
+		"dsr": [
+			39,
+			46,
+			7,
+			0
+		],
+		"params": {
+			"inTable": true,
+			"name": "table"
+		},
+		"templateInfo": null,
+		"type": "missing-end-tag"
+	},
+	{
+		"dsr": [
+			39,
+			46,
+			0,
+			0
+		],
+		"params": {
+			"name": "table"
+		},
+		"templateInfo": null,
+		"type": "deletable-table-tag"
+	}
+]

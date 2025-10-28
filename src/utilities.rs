@@ -84,7 +84,7 @@ pub struct Lint {
     pub type_name: String,
     pub dsr: Vec<Option<usize>>,
     #[serde(alias = "templateInfo")]
-    pub template_info: TemplateInfo,
+    pub template_info: Option<TemplateInfo>,
     pub params: Value,
 }
 

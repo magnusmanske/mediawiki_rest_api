@@ -259,6 +259,6 @@ mod tests {
             .expect("Failed to get page content");
         assert_eq!(lints.len(), 14);
         assert!(lints.iter().any(|lint| lint.type_name == "duplicate-ids"
-            && lint.template_info.name == "Template:Cite_web"));
+            && lint.template_info.as_ref().unwrap().name == "Template:Cite_web"));
     }
 }

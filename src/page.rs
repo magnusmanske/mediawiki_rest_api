@@ -434,7 +434,7 @@ mod tests {
             .expect("Failed to get page content");
         assert_eq!(lints.len(), 9);
         assert!(lints.iter().any(|lint| lint.type_name == "duplicate-ids"
-            && lint.template_info.name == "Template:Cite_book"));
+            && lint.template_info.as_ref().unwrap().name == "Template:Cite_book"));
     }
 
     #[tokio::test]
@@ -530,16 +530,6 @@ mod tests {
             .expect("Failed to create RestApi")
             .with_access_token("foobar")
             .build();
-
-        // use std::fs::File;
-        // use std::io::BufReader;
-        // let file = File::open("access.json").unwrap();
-        // let reader = BufReader::new(file);
-        // let j: Value = serde_json::from_reader(reader).unwrap();
-        // let token = j["token"].as_str().unwrap().to_string();
-        // let api = crate::rest_api_builder::RestApiBuilder::wikipedia("en")
-        //     .with_access_token(token)
-        //     .build();
 
         let source = "test123";
         let comments = "test edit";

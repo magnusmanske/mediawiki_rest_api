@@ -1,4 +1,7 @@
-use crate::{error::RestApiError, prelude::RestApi};
+use crate::{
+    error::RestApiError,
+    prelude::{Lint, RestApi},
+};
 use serde_json::json;
 use std::collections::HashMap;
 use urlencoding::encode;
@@ -121,11 +124,37 @@ impl Transform {
         let ret: String = response.text().await?;
         Ok(ret)
     }
+
+    /// Returns lint errors for wikitext.
+    pub async fn wikitext2lint<S: Into<String>>(
+        wikitext: S,
+        api: &RestApi,
+    ) -> Result<Vec<Lint>, RestApiError> {
+        let path = "/transform/wikitext/to/lint";
+        let params = HashMap::new();
+        let body = json!({
+            "wikitext": wikitext.into()
+        })
+        .to_string();
+        let mut request = api
+            .build_request(path, params, reqwest::Method::POST)
+            .await?
+            .body(body)
+            .build()?;
+        request.headers_mut().remove(reqwest::header::ACCEPT);
+        request
+            .headers_mut()
+            .insert(reqwest::header::CONTENT_TYPE, "application/json".parse()?);
+        let response = api.execute(request).await?;
+        let ret: Vec<Lint> = response.json().await?;
+        Ok(ret)
+    }
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
+    use serde_json::Value;
     use wiremock::matchers::{body_json, header, method, path};
     use wiremock::{Mock, MockServer, ResponseTemplate};
 
@@ -254,5 +283,36 @@ mod tests {
             .expect("Failed to transform wikitext to HTML");
         assert_eq!(wikitext.trim(), expected_wikitext.trim());
     }
-    // wikitext2html_title.html
+
+    #[tokio::test]
+    async fn test_html2lint() {
+        let wikitext = "== Hello Jupiter ==[[Link|text]]<table><table>";
+
+        // Set up mock server
+        let json_text: String =
+            std::fs::read_to_string("test_data/wikitext2lint.json").expect("Test file missing");
+        let json_result: Value = serde_json::from_str(&json_text).expect("Failed to parse JSON");
+        let mock_path = "w/rest.php/v1/transform/wikitext/to/lint";
+
+        let mock_server = MockServer::start().await;
+        let body = json!({
+            "wikitext": wikitext
+        });
+        Mock::given(method("POST"))
+            .and(path(mock_path))
+            .and(body_json(body))
+            .and(header(reqwest::header::CONTENT_TYPE, "application/json"))
+            .respond_with(ResponseTemplate::new(200).set_body_json(json_result))
+            .mount(&mock_server)
+            .await;
+        let api = RestApi::builder(&(mock_server.uri() + "/w/rest.php"))
+            .expect("Failed to create RestApi")
+            .build();
+
+        let result = Transform::wikitext2lint(wikitext, &api)
+            .await
+            .expect("transform failed");
+        assert_eq!(result.len(), 2);
+        assert_eq!(result[0].type_name, "missing-end-tag");
+    }
 }
