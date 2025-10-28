@@ -33,7 +33,18 @@ let html = Transform::wikitext2html("[[Foo|bar]]", &api).await.unwrap();
 ```
 
 # Status
-* `File`: implemented
-* `Page`: most `GET` methods implemented
-* `Revision`: most `GET` methods implemented
-* `Transform`: ~60% methods implemented
+* `File`: complete
+* `Page`: complete
+* `Revision`: complete
+* `Transform`: complete
+* `Math`: complete
+* `OAuth2`: implemented (as part of token management for POST etc)
+* `CheckUser`: not implemented
+* `EventBus`: not implemented
+* `FlaggedRevs`: not implemented
+* `GrowthExperiments`: not implemented
+* `IPinfo`: not implemented
+* `SecurePoll`: not implemented
+* `SiteMap`: not implemented
+* `CampaignEvents`: not implemented
+* `WikimediaCampaignEvents`: not implemented
