@@ -5,7 +5,8 @@ use tokio::sync::RwLock;
 use crate::{bearer_token::BearerToken, error::RestApiError, prelude::RestApi};
 
 /// The default user agent
-const DEFAULT_USER_AGENT: &str = "Rust MediaWiki REST API client";
+const DEFAULT_USER_AGENT: &str =
+    "Rust MediaWiki REST API client (https://github.com/magnusmanske/mediawiki_rest_api)";
 
 /// The latest supported version of the Wikibase REST API
 const WIKIBASE_REST_API_VERSION: u8 = 1;
